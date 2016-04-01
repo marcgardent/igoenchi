@@ -1,0 +1,196 @@
+=== IGoEnchi v0.26 Release Notes ===
+
+About
+
+  IGoEnchi is an Internet Go Server (IGS) client and SGF editor 
+  for Windows Mobile. For more information please visit IGoEnchi 
+  homepage at
+
+  http://sourceforge.net/projects/igoenchi/
+
+=== Changes Log ===
+
+-= from 0.25 =-
+
+ø Added an interface to BruGo Joseki Dictionary (http://www.brugo.be/)
+
+ø Added an option to display the solution for tsumego mode
+  
+ø GNU Go color can be set to None
+
+ø It's now possible to resume a game from file with GNU Go 
+
+ø Added Pass command to SGF Editor
+
+-= from 0.24 =-
+
+ø Added an interface to GNU Go. A suitable GNU Go engine can be 
+  found at http://www.vieka.com/gnugo/download/GnuGo-3.4.ce.0.1.zip. 
+  gnugoce.exe needs to be placed in the same folder as IGoEnchi 
+  executable
+
+ø Connection to IGS should be faster
+  
+ø Client will now detect when connection to IGS is lost
+
+ø Added an option to disable textures for board and stones when 
+  using GDI Renderer
+
+-= from 0.23 =-
+
+ø Layout for dialogs and views is fully automated and should 
+  handle screen rotations better
+                                
+ø SGF menu now has separate items for browsing and editing loaded
+  SGF files
+
+ø SGF menu now has an item for copying the currently visible board
+
+ø It's now possible to choose alternative mark for the last 
+  played move
+
+ø Multiple IGS accounts can now be created in the settings view.  
+
+ø When "Connect" menu item is tapped, the client will not ask for
+  the password if it's already stored in the settings
+
+ø A stone sound has been added
+
+ø IGS games and players lists are now loaded automatically when
+  the corresponding views are opened
+
+ø Tapping on the board while observing a game on IGS will send
+  the coordinates to the kibitz view
+
+ø Tapping on the stones marked as dead in a played game will 
+  reset the counting
+
+ø When browsing an SGF file, it's now possible to tap directly
+  on the stone shadow to go to that variation
+
+ø Bugfix: Direct3D renderer crashed when hiding the taskbar
+
+ø Bugfix: taskbar still sometimes appeared on top of the 
+          maximized window
+
+ø Bugfix: territory markup for an ended IGS game was added 
+          to the currenly visible position, not the last one
+
+-= from 0.22 =-
+
+ø IGS client now manages the friends list. The list control 
+  is not scrollable yet.
+
+ø Stones can be placed using the device's cursor.
+  This is enabled by pressing Enter.
+
+ø When trying to observe already opened game, client will
+  switch to it instead of showing an error
+
+ø GDI renderer now draws alpha-blended variations (at least WM 5.0
+  is required) 
+
+ø In-game chat views now contain a toolbar button for switching
+  back to the game
+
+ø In-game chat messages can now be shown in the game view directly
+
+ø When creating a new board, its size can now be specified, along
+  with other game information
+
+ø In problem solving mode it's now posible to open a collection
+  of problems from a file. Collections can be created by 
+  concatenating several separate SGF files
+
+ø Bugfix: Loading SGF used too much stack space
+
+ø Bugfix: SGF Editor could save both black and white stones at
+          the same place
+
+ø Bugfix: GDI renderer misplaced the on-board messages
+
+ø Bugfix: Invalid SGF caused the parser to loop infinitely
+
+ø Bugfix: Sometimes observed game views were reopened after 
+          unobserving
+
+ø Bugfix: Sometimes two views were opened for the same game
+
+-= from 0.21 =-
+
+ø Now able to load help files from IGS
+
+ø Last sort modes for games' and players' lists are stored in settings
+
+ø Title bar and menu bar can now be hidden, thus the window can use the 
+  whole screen. Especially useful on devices with square screens
+
+ø SGF editing is now supported
+
+ø Bugfix: client sometimes didn't exit properly when connected to IGS
+
+ø Bugfix: crashed on exit when only .NET CF 3.5 installed on the device
+
+-= from 0.20 =-
+
+ø Added settings view
+
+ø Added new Direct3DMobile based renderer. It requires at least
+  Windows Mobile 5.0 and may be unstable on some devices
+
+ø SGF files can now be opened with selected encoding. Saving always
+  uses UTF-8
+
+ø Font used to render board labels and comments can now be selected.
+  This may be needed to view SGF files with characters that are 
+  not available for the default font
+
+ø Some messages are now rendered directly on the board. 
+  These include passes and solution messages in tsumego mode
+
+ø Better handling of screen rotation
+
+ø Relpaced stone images
+
+-= from 0.19 =-
+
+ø Reduced memory consumtion
+
+ø SGF Loader is more stable and supports common markup
+
+ø New mode for solving problems
+
+ø Rotation and mirroring of problem positions
+
+ø Improved chat view
+
+ø Bugfix: crashed when cancelling game seek
+
+ø Bugfix: UNIX style line breaks in SGF were not handled correctly
+                
+-= from 0.18 =-
+
+ø New toolbar interface.
+  Popup menus are not needed to use the client anymore
+
+ø SGF save/load.
+  It's now possible to save played and observed  games to SGF.
+  Loading capabilities are still pretty limited (no markup loaded, etc.)
+
+ø Unencrypted account password storage
+
+ø Opponent stats can be viewed when receiving a match request
+
+ø Client tries to establish a network connection automatically
+
+ø Toggle states are received from server upon connection
+
+=== Project leader ===
+
+  Valentin Kraevskiy
+
+=== Contributors ===
+
+  Oren Laskin - coding and useful suggestions
+
+                         

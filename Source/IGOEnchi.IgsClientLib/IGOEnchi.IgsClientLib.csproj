@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{91B868B8-E9C2-4740-86E7-3827ED81636F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IGOEnchi.IgsLib</RootNamespace>
+    <AssemblyName>IGOEnchi.IgsLib</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Chat\IGSChatHandler.cs" />
+    <Compile Include="Chat\IGSChatManager.cs" />
+    <Compile Include="Chat\IGSKibitzManager.cs" />
+    <Compile Include="Chat\IGSSayManager.cs" />
+    <Compile Include="Chat\IGSTellManager.cs" />
+    <Compile Include="Client\IGSAccount.cs" />
+    <Compile Include="Client\IGSClient.cs" />
+    <Compile Include="Client\IGSMessageHandler.cs" />
+    <Compile Include="Client\IGSMessages.cs" />
+    <Compile Include="Client\IGSParseException.cs" />
+    <Compile Include="Client\IGSToggleSettings.cs" />
+    <Compile Include="Utils\Extensions.cs" />
+    <Compile Include="File\IGSFileHandler.cs" />
+    <Compile Include="File\IGSFileManager.cs" />
+    <Compile Include="File\IGSFileReceivedEventArgs.cs" />
+    <Compile Include="Friend\FriendState.cs" />
+    <Compile Include="Friend\FriendStateChange.cs" />
+    <Compile Include="Friend\IGSFriendManager.cs" />
+    <Compile Include="IGSObserver.cs" />
+    <Compile Include="Info\IGSGameInfo.cs" />
+    <Compile Include="Info\IGSGameInfoRequest.cs" />
+    <Compile Include="Info\IGSPlayerInfo.cs" />
+    <Compile Include="Info\IGSRank.cs" />
+    <Compile Include="Info\IGSRankClass.cs" />
+    <Compile Include="Info\IGSServerInfo.cs" />
+    <Compile Include="Listening\IGSGameEventArgs.cs" />
+    <Compile Include="Listening\IGSGameEventHandler.cs" />
+    <Compile Include="Listening\IGSGameListener.cs" />
+    <Compile Include="Listening\IGSGameStatus.cs" />
+    <Compile Include="Listening\ObservedGame.cs" />
+    <Compile Include="Utils\Network.cs" />
+    <Compile Include="Player\IGSPlayer.cs" />
+    <Compile Include="Player\MatchRequest.cs" />
+    <Compile Include="Player\NMatchRequest.cs" />
+    <Compile Include="Player\SeekRequest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IGOEnchi.GoGameLib\IGOEnchi.GoGameLogic.csproj">
+      <Project>{cce0648c-b6e9-48a8-9647-6202faf8bc6d}</Project>
+      <Name>IGOEnchi.GoGameLogic</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{37E7F04B-50BB-448C-B404-EB409FF407FB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>WindowsApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>IGOEnchi</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\ConfigManager.cs" />
+    <Compile Include="Base\FontUtils.cs" />
+    <Compile Include="Base\HardwareButtonBinding.cs" />
+    <Compile Include="Base\Network.cs" />
+    <Compile Include="Base\SoundUtils.cs" />
+    <Compile Include="Base\WinCEUtils.cs" />
+    <Compile Include="BruGo\BruGoView.cs" />
+    <Compile Include="GnuGo\GnuGoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\CustomToolBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\Direct3DRenderer.cs" />
+    <Compile Include="GUI\FormView.cs" />
+    <Compile Include="GUI\FormViewContainer.cs" />
+    <Compile Include="GUI\FriendView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUI\GameRenderer.cs" />
+    <Compile Include="GUI\GameView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\GDIExtensions.cs" />
+    <Compile Include="GUI\GdiRenderer.cs" />
+    <Compile Include="GnuGo\GnuGoView.cs" />
+    <Compile Include="GUI\GoGameExtension.cs" />
+    <Compile Include="GUI\IGSGameView.cs" />
+    <Compile Include="GUI\Layout.cs" />
+    <Compile Include="GUI\SettingsView.cs" />
+    <Compile Include="GUI\TableView.cs" />
+    <Compile Include="GUI\TextView.cs" />
+    <Compile Include="GUI\TsumegoView.cs" />
+    <Compile Include="IGS\AccountDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IGS\InputGenerator\FloatInput.cs" />
+    <Compile Include="IGS\IGSDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IGS\InputGenerator\IInputGenerator.cs" />
+    <Compile Include="IGS\InputGenerator\IntInput.cs" />
+    <Compile Include="IGS\MatchDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IGS\NMatchDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IGS\SeekDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IGS\InputGenerator\StringInput.cs" />
+    <Compile Include="IGS\ToggleDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IGS\ValueDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IGOEnchi.BruGoClientLib\IGOEnchi.BruGoClientLib.csproj">
+      <Project>{f4cf9a6f-d9fb-4ccc-8934-43336cefe1f3}</Project>
+      <Name>IGOEnchi.BruGoClientLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IGOEnchi.GoGameLib\IGOEnchi.GoGameLogic.csproj">
+      <Project>{cce0648c-b6e9-48a8-9647-6202faf8bc6d}</Project>
+      <Name>IGOEnchi.GoGameLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IGOEnchi.GoTextProtocolLib\IGOEnchi.GoTextProtocolLib.csproj">
+      <Project>{F3FF270C-BB01-40AF-BFEE-ED7041C106D2}</Project>
+      <Name>IGOEnchi.GoTextProtocolLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IGOEnchi.IgsClientLib\IGOEnchi.IgsClientLib.csproj">
+      <Project>{91b868b8-e9c2-4740-86e7-3827ed81636f}</Project>
+      <Name>IGOEnchi.IgsClientLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,5 @@
+C:\data\mgardent\RD\IGOEnchi\source\IGOEnchi.GoTextProtocolLib\obj\Debug\IGOEnchi.GoTextProtocolLib.csprojResolveAssemblyReference.cache
+C:\data\mgardent\RD\IGOEnchi\source\IGOEnchi.GoTextProtocolLib\bin\Debug\IGOEnchi.GoTextProtocolLib.dll
+C:\data\mgardent\RD\IGOEnchi\source\IGOEnchi.GoTextProtocolLib\bin\Debug\IGOEnchi.GoTextProtocolLib.pdb
+C:\data\mgardent\RD\IGOEnchi\source\IGOEnchi.GoTextProtocolLib\obj\Debug\IGOEnchi.GoTextProtocolLib.dll
+C:\data\mgardent\RD\IGOEnchi\source\IGOEnchi.GoTextProtocolLib\obj\Debug\IGOEnchi.GoTextProtocolLib.pdb

@@ -38,18 +38,16 @@ namespace IGOEnchi.SmartGameLib
         {
             if (File.Exists(path))
             {
-                var stream = new StreamReader(
-                    File.OpenRead(path));
-
-                var index = new List<int>();
-                var level = 0;
-                var offset = 0;
-
-                try
+                using (var fs = File.OpenRead(path))
+                using (var reader = new StreamReader(fs))
                 {
-                    while (!stream.EndOfStream)
+                    var index = new List<int>();
+                    var level = 0;
+                    var offset = 0;
+
+                    while (!reader.EndOfStream)
                     {
-                        var next = (char) stream.Read();
+                        var next = (char)reader.Read();
                         if (next == '(')
                         {
                             if (level == 0)
@@ -64,27 +62,29 @@ namespace IGOEnchi.SmartGameLib
                         }
                         offset += 1;
                     }
-                }
-                finally
-                {
-                    stream.Close();
-                }
+                
 
-                if (permute)
-                {
-                    var permutation = new List<int>(index.Count);
-                    var random = new Random();
-                    while (index.Count > 0)
+                    if (permute)
                     {
-                        var next = random.Next(0, index.Count);
-                        permutation.Add(index[next]);
-                        index.RemoveAt(next);
+                        var permutation = new List<int>(index.Count);
+                        var random = new Random();
+                        while (index.Count > 0)
+                        {
+                            var next = random.Next(0, index.Count);
+                            permutation.Add(index[next]);
+                            index.RemoveAt(next);
+                        }
+                        return permutation;
                     }
-                    return permutation;
+
+                    return index;
+
                 }
-                return index;
             }
-            throw new Exception("Couldn't open " + path);
+            else
+            {
+                throw new IOException($"File doesn't exist {path}");
+            }
         }
 
         public static IEnumerable<SGFTree> LoadAndParse(IEnumerable<string> paths)

@@ -11,7 +11,7 @@ using IGOEnchi.SmartGameLib.models;
 
 namespace IGOEnchi.SmartGameLib
 {
-    public class SGFLoader
+    public class SgfReader
     {
         /// <summary>
         ///     Set Defaut Encoding to load file
@@ -23,7 +23,7 @@ namespace IGOEnchi.SmartGameLib
 
         private int charCount;
 
-        private SGFLoader(StreamReader stream)
+        private SgfReader(StreamReader stream)
         {
             propertyValue = new StringBuilder();
             this.stream = stream;
@@ -116,7 +116,7 @@ namespace IGOEnchi.SmartGameLib
 
                 try
                 {
-                    var loader = new SGFLoader(stream);
+                    var loader = new SgfReader(stream);
 
                     if (index == null)
                     {
@@ -164,7 +164,7 @@ namespace IGOEnchi.SmartGameLib
 
                 try
                 {
-                    var loader = new SGFLoader(stream);
+                    var loader = new SgfReader(stream);
 
                     if (loader.ReadUntil('(') == '(')
                     {
@@ -200,7 +200,7 @@ namespace IGOEnchi.SmartGameLib
 
             try
             {
-                var loader = new SGFLoader(stream);
+                var loader = new SgfReader(stream);
                 if (loader.ReadUntil('(') == '(')
                 {
                     tree = new SGFTree();

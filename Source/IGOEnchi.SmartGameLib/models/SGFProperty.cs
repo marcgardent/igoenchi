@@ -1,6 +1,6 @@
 namespace IGOEnchi.SmartGameLib.models
 {
-    public struct SGFProperty
+    public class SGFProperty
     {
         private readonly string name;
         private readonly string value;

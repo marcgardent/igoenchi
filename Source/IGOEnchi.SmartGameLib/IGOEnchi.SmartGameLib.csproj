@@ -40,10 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="io\SgfWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SGFLoader.cs" />
+    <Compile Include="io\SgfReader.cs" />
     <Compile Include="models\SGFProperty.cs" />
     <Compile Include="models\SGFTree.cs" />
+    <Compile Include="Fluent\SgfBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="IGOEnchi.SmartGameLib.readme.txt" />

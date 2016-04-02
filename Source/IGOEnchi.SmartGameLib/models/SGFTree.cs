@@ -4,6 +4,7 @@
  */
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace IGOEnchi.SmartGameLib.models
 {
@@ -20,6 +21,14 @@ namespace IGOEnchi.SmartGameLib.models
         public List<SGFTree> ChildNodes { get; private set; }
 
         public List<SGFProperty> Properties { get; private set; }
+
+        public bool HasContent
+        {
+            get
+            {
+                return Properties.Any();   
+            }
+        }
 
         public SGFTree NewNode()
         {

@@ -107,11 +107,7 @@ namespace IGOEnchi.GoGameLogic.Models
 
         public bool StoneInBounds(byte x, byte y)
         {
-            if ((x < Black.Width) && (y < Black.Height))
-            {
-                return true;
-            }
-            return false;
+            return (x < Black.Width) && (y < Black.Height);
         }
 
         public bool StoneInBounds(Stone stone)

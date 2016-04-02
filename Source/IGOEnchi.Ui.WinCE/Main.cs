@@ -12,6 +12,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using IGOEnchi.GoGameSgf;
+using IGOEnchi.SmartGameLib;
 using Microsoft.WindowsCE.Forms;
 
 namespace IGoEnchi
@@ -1043,7 +1045,7 @@ namespace IGoEnchi
 					
 					var stream = new MemoryStream(resourceManager.GetObject("About") as byte[]);
 					
-					var game = SGFCompiler.Compile(SGFLoader.LoadFromStream(stream));
+					var game = SgfCompiler.Compile(SGFLoader.LoadFromStream(stream));
 					game.ToMove(0);
 					game.CommentNode("Thank you for using IGoEnchi v0.26. If you have any feedback, " +
 					                 "please visit http://igoenchi.sourceforge.net");
@@ -1280,13 +1282,13 @@ namespace IGoEnchi
 					var fileName = dialog.FileName;
 					if (fileName == viewContainer.ActiveView.Text)
 					{
-						SGFWriter.SaveGame(game, fileName);
+						SgfWriter.SaveGame(game, fileName);
 					}
 					else if (viewContainer.ActiveView is GameEditView)
 					{
 						if (viewContainer.Rename(viewContainer.ActiveView.Text, fileName))
 						{
-							SGFWriter.SaveGame(game, fileName);
+							SgfWriter.SaveGame(game, fileName);
 						}
 						else
 						{
@@ -1299,7 +1301,7 @@ namespace IGoEnchi
 					}
 					else
 					{
-						SGFWriter.SaveGame(game, fileName);
+						SgfWriter.SaveGame(game, fileName);
 					}
 				}
 			}
@@ -1333,7 +1335,7 @@ namespace IGoEnchi
 					{
 						Cursor.Current = Cursors.WaitCursor;
 						var tree = SGFLoader.LoadAndParseSingle(fileName);
-						var game = SGFCompiler.Compile(tree);
+						var game = SgfCompiler.Compile(tree);
 						game.ToMove(0);					
 						var warning = true;
 						Cursor.Current = Cursors.Default;
@@ -1443,7 +1445,7 @@ namespace IGoEnchi
 						    (sender as MenuItem).Text == "Browse game")
 						{
 							var tree = SGFLoader.LoadAndParseSingle(fileName);
-							var game = SGFCompiler.Compile(tree);
+							var game = SgfCompiler.Compile(tree);
 							game.ToMove(0);
 							
 							var view =
@@ -1457,7 +1459,7 @@ namespace IGoEnchi
 						else
 						{
 							var trees = SGFLoader.LoadAndParse(new string[] {fileName});
-							var games = SGFCompiler.Compile(trees, TransformType.Random);
+							var games = SgfCompiler.Compile(trees, TransformType.Random);
 							
 							var view =
 								new TsumegoView(ClientSize,

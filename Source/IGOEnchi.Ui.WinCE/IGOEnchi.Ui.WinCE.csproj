@@ -118,6 +118,10 @@
       <Project>{cce0648c-b6e9-48a8-9647-6202faf8bc6d}</Project>
       <Name>IGOEnchi.GoGameLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IGOEnchi.GoGameSgf\IGOEnchi.GoGameSgf.csproj">
+      <Project>{872B91C3-569E-44E8-86EA-3441BC6243A9}</Project>
+      <Name>IGOEnchi.GoGameSgf</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IGOEnchi.GoTextProtocolLib\IGOEnchi.GoTextProtocolLib.csproj">
       <Project>{F3FF270C-BB01-40AF-BFEE-ED7041C106D2}</Project>
       <Name>IGOEnchi.GoTextProtocolLib</Name>
@@ -125,6 +129,10 @@
     <ProjectReference Include="..\IGOEnchi.IgsClientLib\IGOEnchi.IgsClientLib.csproj">
       <Project>{91b868b8-e9c2-4740-86e7-3827ed81636f}</Project>
       <Name>IGOEnchi.IgsClientLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IGOEnchi.SmartGameLib\IGOEnchi.SmartGameLib.csproj">
+      <Project>{B637CA39-A3C2-4B5E-ABED-F114E217B436}</Project>
+      <Name>IGOEnchi.SmartGameLib</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

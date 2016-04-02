@@ -58,7 +58,7 @@
     <Compile Include="Variants.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\IGOEnchi.SmartGameLib\IGOEnchi.SmartGameLib.csproj">
+    <ProjectReference Include="..\IGOEnchi.SmartGameLib\IGOEnchi.SmartGameLib.csproj">
       <Project>{B637CA39-A3C2-4B5E-ABED-F114E217B436}</Project>
       <Name>IGOEnchi.SmartGameLib</Name>
     </ProjectReference>

@@ -10,7 +10,11 @@ using IGOEnchi.GoGameLogic.Models;
 
 namespace IGOEnchi.GoGameSgf
 {
-    public class SGFWriter
+
+    
+    /// <see cref="GoSgfBuilder"/>
+    [Obsolete]
+    public class GoSgfWriter
     {
         public static void SaveGame(GoGame game, string path)
         {
@@ -19,7 +23,7 @@ namespace IGOEnchi.GoGameSgf
             writer.Close();
         }
 
-        public static void SaveGame(GoGame game, StreamWriter writer)
+        public static void SaveGame(GoGame game, TextWriter writer)
         {
             var node = game.RootNode;
 
@@ -32,7 +36,7 @@ namespace IGOEnchi.GoGameSgf
             writer.Write(")");
         }
 
-        private static void SaveNode(StreamWriter writer, GoNode goNode)
+        private static void SaveNode(TextWriter writer, GoNode goNode)
         {
             var node = goNode;
             while (node != null)

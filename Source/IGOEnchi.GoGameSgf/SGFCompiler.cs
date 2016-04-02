@@ -13,16 +13,21 @@ using IGOEnchi.SmartGameLib.models;
 
 namespace IGOEnchi.GoGameSgf
 {
-    public class SGFCompiler
+
+    /// <summary>
+    /// Convert SGFTree to GoGame
+    /// </summary>
+    public class SgfCompiler
     {
         public static CultureInfo CultureInfoDefaultConfiguration = CultureInfo.InvariantCulture;
         public static int BoardStorageStepConfiguration = 20;
 
         private static bool useRoot;
-        private static readonly Regex regEx = AntiUnixRegEx();
+        private static readonly Regex AntiUnixRegex = new Regex("(?<!\r)\n", RegexOptions.Compiled | RegexOptions.Multiline);
         private static StoneTransformer stoneTransformer;
         private static readonly Random random = new Random(unchecked((int) DateTime.Now.Ticks));
-
+        
+        private delegate void StoneTransformer(Stone stone);
 
         public static IEnumerable<GoGame> Compile(IEnumerable<SGFTree> trees, TransformType transform)
         {
@@ -42,11 +47,11 @@ namespace IGOEnchi.GoGameSgf
             byte size = 19;
             if (gameTree.ChildNodes.Count == 0)
             {
-                throw new Exception("No game data");
+                throw new FormatException("No game data");
             }
             if (gameTree.ChildNodes.Count > 1)
             {
-                throw new Exception("Game lists are not supported");
+                throw new FormatException("Game lists are not supported");
             }
 
             var rootNode = gameTree.ChildNodes[0];
@@ -57,7 +62,7 @@ namespace IGOEnchi.GoGameSgf
                     size = Convert.ToByte(property.Value);
                     if (!(size >= 2 && size <= 19))
                     {
-                        throw new Exception("Board size should be between 2 and 19");
+                        throw new FormatException("Board size should be between 2 and 19"); 
                     }
                 }
             }
@@ -83,7 +88,7 @@ namespace IGOEnchi.GoGameSgf
                     }
                     catch (Exception)
                     {
-                        game.Info.Komi = 0;
+                        game.Info.Komi = 0.5f;
                     }
                 }
                 if (property.Name == "HA")
@@ -171,12 +176,7 @@ namespace IGOEnchi.GoGameSgf
                     break;
             }
         }
-
-        private static Regex AntiUnixRegEx()
-        {
-            return new Regex("(?<!\r)\n", RegexOptions.Compiled | RegexOptions.Multiline);
-        }
-
+         
         private static void CompileNode(GoGame game, SGFTree tree)
         {
             var singleBranch = true;
@@ -263,7 +263,7 @@ namespace IGOEnchi.GoGameSgf
                 switch (name)
                 {
                     case "C":
-                        node.Comment += regEx.Replace(property.Value, "\r\n");
+                        node.Comment += AntiUnixRegex.Replace(property.Value, "\r\n");
                         break;
                     case "LB":
                         node.EnsureMarkup();
@@ -314,7 +314,7 @@ namespace IGOEnchi.GoGameSgf
         {
             try
             {
-                var parts = source.Split(':');
+                var parts = source.Split(':'); //TODO buggy - Text can be contain ":"
                 var stone = CompilePointValue(parts[0]);
                 return new TextLabel(stone.X, stone.Y,
                     parts[1].Substring(0, Math.Min(3, parts[1].Length)));
@@ -411,6 +411,5 @@ namespace IGOEnchi.GoGameSgf
             return false;
         }
 
-        private delegate void StoneTransformer(Stone stone);
     }
 }

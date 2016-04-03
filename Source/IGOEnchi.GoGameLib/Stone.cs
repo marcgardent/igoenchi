@@ -1,9 +1,15 @@
 using System;
 
-namespace IGOEnchi.GoGameLogic.Models
+namespace IGOEnchi.GoGameLogic
 {
-    public class Stone
+    public class Stone : ICoords
     {
+        public byte X { set; get; }
+
+        public byte Y { set; get; }
+
+        public bool IsBlack { set; get; }
+
         public Stone()
         {
             X = 0;
@@ -25,11 +31,6 @@ namespace IGOEnchi.GoGameLogic.Models
             IsBlack = source.IsBlack;
         }
 
-        public byte X { set; get; }
-
-        public byte Y { set; get; }
-
-        public bool IsBlack { set; get; }
 
         public Stone OtherColorStone()
         {

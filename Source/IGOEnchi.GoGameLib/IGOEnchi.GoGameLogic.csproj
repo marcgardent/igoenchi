@@ -43,12 +43,14 @@
     <Compile Include="BitPlane.cs" />
     <Compile Include="Board.cs" />
     <Compile Include="BoardMarkup.cs" />
+    <Compile Include="Coords.cs" />
     <Compile Include="GameInfo.cs" />
     <Compile Include="GoGame.cs" />
     <Compile Include="GoMoveNode.cs" />
     <Compile Include="GoNode.cs" />
     <Compile Include="GoRootNode.cs" />
     <Compile Include="GoSetupNode.cs" />
+    <Compile Include="ICoords.cs" />
     <Compile Include="Mark.cs" />
     <Compile Include="MarkType.cs" />
     <Compile Include="TransformType.cs" />

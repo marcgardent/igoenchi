@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 
-namespace IGOEnchi.GoGameLogic.Models
+namespace IGOEnchi.GoGameLogic
 {
     public class Board
     {
         private Board()
         {
+
         }
 
         public Board(byte boardSize)
@@ -74,7 +75,7 @@ namespace IGOEnchi.GoGameLogic.Models
             return true;
         }
 
-        public bool Remove(Stone stone)
+        public bool Remove(ICoords stone)
         {
             return Remove(stone.X, stone.Y);
         }
@@ -105,12 +106,19 @@ namespace IGOEnchi.GoGameLogic.Models
             return false;
         }
 
+
+        /// <summary>
+        /// Is coords on the board
+        /// </summary>
         public bool StoneInBounds(byte x, byte y)
         {
             return (x < Black.Width) && (y < Black.Height);
         }
 
-        public bool StoneInBounds(Stone stone)
+        /// <summary>
+        /// Is coords on the board
+        /// </summary>
+        public bool StoneInBounds(ICoords stone)
         {
             return StoneInBounds(stone.X, stone.Y);
         }

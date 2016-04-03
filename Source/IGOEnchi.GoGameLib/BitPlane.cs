@@ -1,10 +1,12 @@
 using System.Collections;
+using System.Collections.Generic;
 
-namespace IGOEnchi.GoGameLogic.Models
+namespace IGOEnchi.GoGameLogic
 {
     public class BitPlane
     {
         private BitArray bitArray;
+
 
         public BitPlane(byte width, byte height)
         {
@@ -15,17 +17,25 @@ namespace IGOEnchi.GoGameLogic.Models
 
         public BitPlane(byte size) : this(size, size)
         {
-        }
 
+        }
+        
         public byte Width { get; private set; }
 
         public byte Height { get; private set; }
 
+        public bool this[ICoords coords]
+        {
+            get { return this[coords.X, coords.Y]; }
+
+            set { this[coords.X, coords.Y] = value; }
+        }
+
         public bool this[byte xIndex, byte yIndex]
         {
-            get { return bitArray.Get(yIndex*Width + xIndex); }
+            get { return bitArray.Get(yIndex * Width + xIndex); }
 
-            set { bitArray.Set(yIndex*Width + xIndex, value); }
+            set { bitArray.Set(yIndex * Width + xIndex, value); }
         }
 
         public BitPlane And(BitPlane bitPlane)
@@ -86,6 +96,43 @@ namespace IGOEnchi.GoGameLogic.Models
             var bitPlaneCopy = new BitPlane(Width, Height);
             bitPlaneCopy.bitArray = bitArray.Clone() as BitArray;
             return bitPlaneCopy;
+        }
+
+
+        public IEnumerable<ICoords> AllFalse()
+        {
+            for (byte x = 0; x < Width; x++)
+            {
+                for (byte y = 0; y < Height; y++)
+                {
+                    if (!this[x, y]) yield return new Coords(x, y);
+                }
+            }
+        }
+
+        public IEnumerable<ICoords> AllTrue()
+        {
+
+            for (byte x = 0; x < Width; x++)
+            {
+                for (byte y = 0; y < Height; y++)
+                {
+                    if (this[x,y]) yield return new Coords(x, y);
+                }
+            }
+        }
+
+
+        public IEnumerable<ICoords> AllCoords()
+        {
+
+            for (byte x = 0; x < Width; x++)
+            {
+                for (byte y = 0; y < Height; y++)
+                {
+                    yield return new Coords(x, y);
+                }
+            }
         }
     }
 }

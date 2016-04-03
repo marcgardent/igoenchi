@@ -1,4 +1,4 @@
-namespace IGOEnchi.GoGameLogic.Models
+namespace IGOEnchi.GoGameLogic
 {
     public struct Mark
     {

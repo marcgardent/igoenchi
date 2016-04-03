@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace IGOEnchi.GoGameLogic.Models
+namespace IGOEnchi.GoGameLogic
 {
     public abstract class GoNode
     {

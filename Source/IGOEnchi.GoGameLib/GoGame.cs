@@ -1,9 +1,6 @@
 using System;
-using System.CodeDom;
-using System.IO;
-using IGOEnchi.GoGameLib.Models; 
 
-namespace IGOEnchi.GoGameLogic.Models
+namespace IGOEnchi.GoGameLogic
 {
     public class GoGame
     {

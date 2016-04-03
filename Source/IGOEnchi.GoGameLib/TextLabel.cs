@@ -1,4 +1,4 @@
-namespace IGOEnchi.GoGameLib.Models
+namespace IGOEnchi.GoGameLogic
 {
     public struct TextLabel
     {

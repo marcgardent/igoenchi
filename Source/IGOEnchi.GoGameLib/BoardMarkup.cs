@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using IGOEnchi.GoGameLib.Models;
 
-namespace IGOEnchi.GoGameLogic.Models
+namespace IGOEnchi.GoGameLogic
 {
     public class BoardMarkup
     {

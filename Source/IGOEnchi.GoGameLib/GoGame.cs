@@ -318,5 +318,12 @@ namespace IGOEnchi.GoGameLogic
             currentNode = currentNode.GetNextSibling();
             board = currentNode.BoardCopy;
         }
+
+        public void ToStart()
+        {
+            while (this.ToPreviousMove())
+            {
+            }
+        }
     }
 }

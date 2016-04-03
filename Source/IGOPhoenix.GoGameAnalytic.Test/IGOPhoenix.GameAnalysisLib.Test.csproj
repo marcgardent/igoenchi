@@ -58,9 +58,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IGOEnchi.GoGameAnalytic\IGOPhoenix.GoGameAnalytic.csproj">
+    <ProjectReference Include="..\IGOEnchi.GoGameAnalytic\IGOPhoenix.GameAnalysisLib.csproj">
       <Project>{6B505A8E-6F0C-4AFB-9728-9B67C19A1FDB}</Project>
-      <Name>IGOPhoenix.GoGameAnalytic</Name>
+      <Name>IGOPhoenix.GameAnalysisLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\IGOEnchi.GoGameLib\IGOEnchi.GoGameLogic.csproj">
       <Project>{CCE0648C-B6E9-48A8-9647-6202FAF8BC6D}</Project>

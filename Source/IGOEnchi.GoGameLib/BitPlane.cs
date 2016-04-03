@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace IGOEnchi.GoGameLogic
 {
     public class BitPlane
     {
+        
         private BitArray bitArray;
 
 
@@ -107,22 +109,7 @@ namespace IGOEnchi.GoGameLogic
             bitPlaneCopy.bitArray = bitArray.Clone() as BitArray;
             return bitPlaneCopy;
         }
-
-
-        public IEnumerable<ICoords> Disabled
-        {
-            get
-            {
-                for (byte x = 0; x < Width; x++)
-                {
-                    for (byte y = 0; y < Height; y++)
-                    {
-                        if (!this[x, y]) yield return new Coords(x, y);
-                    }
-                }
-            }
-        }
-
+        
         public IEnumerable<ICoords> Unabled
         {
             get
@@ -137,21 +124,7 @@ namespace IGOEnchi.GoGameLogic
             }
         }
 
-
-        public IEnumerable<ICoords> All
-        {
-            get
-            {
-                for (byte x = 0; x < Width; x++)
-                {
-                    for (byte y = 0; y < Height; y++)
-                    {
-                        yield return new Coords(x, y);
-                    }
-                }
-            }
-        }
-
+         
 
         /// <summary>
         /// Remove List's Style
@@ -199,5 +172,7 @@ namespace IGOEnchi.GoGameLogic
                 this[coord] = true;
             }
         }
+
+        public int Count => Unabled.Count();
     }
 }

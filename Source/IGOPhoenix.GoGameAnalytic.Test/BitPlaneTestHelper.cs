@@ -10,6 +10,7 @@ namespace IGOPhoenix.GoGameAnalytic.Test
         {
             var compare = excepted.Copy();
             compare.Xor(actual);
+
             if (!compare.Empty())
             {
                 Trace.WriteLine(message);

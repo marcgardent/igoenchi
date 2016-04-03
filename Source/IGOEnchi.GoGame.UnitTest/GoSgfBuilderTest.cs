@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Linq;
-using IGOEnchi.GoGameLogic.Models;
-using IGOEnchi.GoGameSgf;
-using IGOEnchi.SmartGameLib;
-using IGOEnchi.SmartGameLib.models;
+using IGOEnchi.GoGameLogic; 
+using IGOEnchi.GoGameSgf; 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace IGOEnchi.GoGame.UnitTest
@@ -14,7 +12,7 @@ namespace IGOEnchi.GoGame.UnitTest
         [TestMethod]
         public void When_overflow_Coord_Do_Empty_Coord()
         {
-            var g = new GoGameLogic.Models.GoGame(19);
+            var g = new GoGameLogic.GoGame(19);
             g.PlaceStone(new Stone(20,20, true));
 
             var target = new GoSgfBuilder(g);
@@ -22,7 +20,7 @@ namespace IGOEnchi.GoGame.UnitTest
 
             var actual = result.ChildNodes[0].Properties.SingleOrDefault(x => x.Name == "B");
             Assert.IsNotNull(actual); 
-            Assert.AreEqual(String.Empty, actual.Value);
+            Assert.AreEqual(string.Empty, actual.Value);
         }
     }
 }

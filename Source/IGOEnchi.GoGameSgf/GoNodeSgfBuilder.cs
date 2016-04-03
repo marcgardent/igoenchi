@@ -1,5 +1,5 @@
 using System;
-using IGOEnchi.GoGameLogic.Models;
+using IGOEnchi.GoGameLogic;
 using IGOEnchi.SmartGameLib;
 using IGOEnchi.SmartGameLib.models;
 

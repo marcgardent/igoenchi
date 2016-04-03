@@ -7,8 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using IGOEnchi.GoGameLib.Models;
-using IGOEnchi.GoGameLogic.Models;
+using IGOEnchi.GoGameLogic;
 using IGOEnchi.SmartGameLib.models;
 
 namespace IGOEnchi.GoGameSgf

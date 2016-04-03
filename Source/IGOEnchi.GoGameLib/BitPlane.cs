@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -38,6 +39,11 @@ namespace IGOEnchi.GoGameLogic
             set { bitArray.Set(yIndex * Width + xIndex, value); }
         }
 
+        public bool InOfRange(ICoords coords)
+        {
+            return (coords.X < Width && coords.Y < Height);
+        }
+        
         public BitPlane And(BitPlane bitPlane)
         {
             var result = new BitPlane(Width, Height);
@@ -76,6 +82,10 @@ namespace IGOEnchi.GoGameLogic
             return result;
         }
 
+        /// <summary>
+        /// No True Values
+        /// </summary>
+        /// <returns></returns>
         public bool Empty()
         {
             for (byte i = 0; i < Width; i++)
@@ -90,7 +100,7 @@ namespace IGOEnchi.GoGameLogic
             }
             return true;
         }
-
+        
         public BitPlane Copy()
         {
             var bitPlaneCopy = new BitPlane(Width, Height);
@@ -99,39 +109,94 @@ namespace IGOEnchi.GoGameLogic
         }
 
 
-        public IEnumerable<ICoords> AllFalse()
+        public IEnumerable<ICoords> Disabled
         {
-            for (byte x = 0; x < Width; x++)
+            get
             {
-                for (byte y = 0; y < Height; y++)
+                for (byte x = 0; x < Width; x++)
                 {
-                    if (!this[x, y]) yield return new Coords(x, y);
+                    for (byte y = 0; y < Height; y++)
+                    {
+                        if (!this[x, y]) yield return new Coords(x, y);
+                    }
                 }
             }
         }
 
-        public IEnumerable<ICoords> AllTrue()
+        public IEnumerable<ICoords> Unabled
         {
-
-            for (byte x = 0; x < Width; x++)
+            get
             {
-                for (byte y = 0; y < Height; y++)
+                for (byte x = 0; x < Width; x++)
                 {
-                    if (this[x,y]) yield return new Coords(x, y);
+                    for (byte y = 0; y < Height; y++)
+                    {
+                        if (this[x, y]) yield return new Coords(x, y);
+                    }
                 }
             }
         }
 
 
-        public IEnumerable<ICoords> AllCoords()
+        public IEnumerable<ICoords> All
         {
-
-            for (byte x = 0; x < Width; x++)
+            get
             {
-                for (byte y = 0; y < Height; y++)
+                for (byte x = 0; x < Width; x++)
                 {
-                    yield return new Coords(x, y);
+                    for (byte y = 0; y < Height; y++)
+                    {
+                        yield return new Coords(x, y);
+                    }
                 }
+            }
+        }
+
+
+        /// <summary>
+        /// Remove List's Style
+        /// from True to False
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public bool Remove(ICoords item)
+        {
+            if (InOfRange(item) && this[item])
+            {
+                this[item] = false;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Add List's Style
+        /// from False to True
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public bool Add(ICoords item)
+        {
+            if (InOfRange(item))
+            {
+                this[item] = true;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        public void AddRange(IEnumerable<ICoords> coords)
+        {
+            foreach (var coord in coords)
+            {
+                this[coord] = true;
             }
         }
     }

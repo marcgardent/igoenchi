@@ -6,7 +6,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using IGOEnchi.GoGameLogic.Models;
+using IGOEnchi.GoGameLogic;
 using IGOEnchi.SmartGameLib.models;
 
 namespace IGOEnchi.GoGameSgf

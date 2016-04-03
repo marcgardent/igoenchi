@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using IGOEnchi.GoGameLogic.Models;
+using IGOEnchi.GoGameLogic;
 
 namespace IGoEnchi
 {

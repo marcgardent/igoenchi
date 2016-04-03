@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using IGOEnchi.GoGameLogic.Models;
+using IGOEnchi.GoGameLogic;
 using IGOEnchi.IgsLib.Listening;
 
 namespace IGoEnchi

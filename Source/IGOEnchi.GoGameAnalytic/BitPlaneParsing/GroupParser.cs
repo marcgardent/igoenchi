@@ -18,7 +18,7 @@ namespace IGOPhoenix.GoGameAnalytic.BitPlaneParsing
             _walk = walk;
         }
 
-        public List<BitPlane> ParseGroups(BitPlane stones)
+        public List<BitPlane> Parse(BitPlane stones)
         {
             var ret = new List<BitPlane>();
             var scope = stones.Copy();

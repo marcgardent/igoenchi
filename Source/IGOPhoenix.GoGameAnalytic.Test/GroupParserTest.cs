@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using IGOEnchi.GoGameLogic;
 using IGOPhoenix.GoGameAnalytic.BitPlaneParsing;
 using Microsoft.VisualStudio.TestTools.UnitTesting; 
@@ -16,7 +15,7 @@ namespace IGOPhoenix.GoGameAnalytic.Test
             var target = GroupParser.NobiGroupParser();
             var data = new BitPlane(19);
 
-            var actual = target.ParseGroups(data);
+            var actual = target.Parse(data);
             
             Assert.AreEqual(0, actual.Count);
         }
@@ -31,7 +30,7 @@ namespace IGOPhoenix.GoGameAnalytic.Test
             data.Add(new Coords(3, 3));
             data.Add(new Coords(4, 4));
             data.Add(new Coords(5, 5));
-            var actual = target.ParseGroups(data);
+            var actual = target.Parse(data);
 
             Assert.AreEqual(5, actual.Count);
         }
@@ -46,12 +45,11 @@ namespace IGOPhoenix.GoGameAnalytic.Test
             grpA.Add(new Coords(1, 3));
             grpA.Add(new Coords(1, 4));
 
-            var actual = target.ParseGroups(grpA.Copy());
+            var actual = target.Parse(grpA.Copy());
             Assert.AreEqual(1, actual.Count);
-            AssertBitPlane(grpA, actual[0] , "Group A");
+            BitPlaneTestHelper.AssertBitPlane(grpA, actual[0] , "Group A");
         }
-
-
+        
         [TestMethod]
         public void When_Two_Group_Do_It()
         {
@@ -72,37 +70,12 @@ namespace IGOPhoenix.GoGameAnalytic.Test
             data.Or(grpA);
             data.Or(grpB);
             
-            var actual = target.ParseGroups(data.Copy());
+            var actual = target.Parse(data.Copy());
             Assert.AreEqual(2, actual.Count);
-            AssertBitPlane(grpA, actual[0], "Group A"); //Todo Algorithm : Make to Order Tolerance
-            AssertBitPlane(grpB, actual[1], "Group B");
+            BitPlaneTestHelper.AssertBitPlane(grpA, actual[0], "Group A"); //Todo Algorithm : Make to Order Tolerance
+            BitPlaneTestHelper.AssertBitPlane(grpB, actual[1], "Group B");
         }
 
-        private void AssertBitPlane(BitPlane excepted, BitPlane actual, string message)
-        {
-            var compare = excepted.Copy();
-            compare.Xor(actual);
-            if (!compare.Empty())
-            {
-                Trace.WriteLine(message);
-                TraceBitPlane(actual, "actual :");
-                TraceBitPlane(excepted, "excepted :");
-                TraceBitPlane(compare, "Errors :");
-                Assert.Fail("See Trace");
-            }
-        }
 
-        public void TraceBitPlane(BitPlane plane, string name)
-        {
-            Trace.WriteLine(name);
-            for (byte i = 0; i < plane.Width; i++)
-            {
-                for (byte j = 0; j < plane.Height; j++)
-                {
-                     Trace.Write(plane[i, j] ? "X" : "O");
-                }
-                Trace.WriteLine($"|{i}");
-            }
-        }
     }
 }

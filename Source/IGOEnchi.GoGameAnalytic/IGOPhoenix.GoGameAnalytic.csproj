@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BitPlaneParsing\AnalyticHelper.cs" />
+    <Compile Include="BitPlaneParsing\LibertiesParser.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="BitPlaneParsing\GroupParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

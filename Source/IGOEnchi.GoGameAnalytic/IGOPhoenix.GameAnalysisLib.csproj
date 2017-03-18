@@ -43,11 +43,13 @@
     <Compile Include="Analyser.cs" />
     <Compile Include="BitPlaneParsing\AnalyticHelper.cs" />
     <Compile Include="BitPlaneParsing\LibertiesParser.cs" />
+    <Compile Include="Models\ChainStat.cs" />
     <Compile Include="Models\GoDynamic.cs" />
     <Compile Include="Models\GoPlayerStat.cs" />
     <Compile Include="Models\GoStat.cs" />
     <Compile Include="BitPlaneParsing\GroupParser.cs" />
     <Compile Include="Models\GroupStat.cs" />
+    <Compile Include="Models\StonesStat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -80,6 +80,19 @@ namespace IGOEnchi.GoGameLogic
             return Remove(stone.X, stone.Y);
         }
 
+
+        
+        public bool HasBlack(byte x, byte y)
+        {
+            return StoneInBounds(x, y) && Black[x, y];
+        }
+
+        public bool HasWhite(byte x, byte y)
+        {
+            return StoneInBounds(x, y) && White[x, y];
+        }
+
+        [Obsolete]
         public bool HasStone(byte x, byte y, bool black)
         {
             if (StoneInBounds(x, y))

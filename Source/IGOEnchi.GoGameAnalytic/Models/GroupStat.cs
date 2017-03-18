@@ -1,20 +1,17 @@
-﻿using IGOEnchi.GoGameLogic;
+﻿using System.Collections.Generic;
+using IGOEnchi.GoGameLogic;
 
 namespace IGOPhoenix.GoGameAnalytic.Models
 {
-    public class GroupStat
+    public class GroupStat : ChainStat
     {
-        public int StoneCount => Stones.Count;
-        public int LibertyCount => Liberties.Count;
-        
+        public readonly ICollection<ChainStat> Chains;
 
-        public readonly BitPlane Stones;
-        public readonly BitPlane Liberties;
-        
-        public GroupStat(BitPlane stones, BitPlane liberties)
+        public int ChainCount => Chains.Count;
+
+        public GroupStat(BitPlane stones, BitPlane liberties, ICollection<ChainStat> chains) :base(stones, liberties)
         {
-            Stones = stones;
-            Liberties = liberties;
+            this.Chains = chains;
         }
     }
 }

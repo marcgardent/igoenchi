@@ -6,6 +6,13 @@ namespace IGOPhoenix.GoGameAnalytic.BitPlaneParsing
 {
     public class GroupParser
     {
+
+        public static GroupParser StandardGroupParser()
+        {
+            return new GroupParser(AnalyticHelper.StandardWalk);
+        }
+
+
         public static GroupParser NobiGroupParser()
         {
             return new GroupParser(AnalyticHelper.NobiWalk);

@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{36312BDC-21A9-44BF-A3B7-86C65E696175}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{B07EC889-E178-4415-B945-2A271896946F}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IGOPhoenix.GameAnalysis</RootNamespace>
-    <AssemblyName>IGOPhoenix.GameAnalysis</AssemblyName>
+    <RootNamespace>IGOPhoenix.Analysis.SpeechOfStones</RootNamespace>
+    <AssemblyName>IGOPhoenix.Analysis.SpeechOfStones</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,34 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Models\LinkModel.cs" />
+    <Compile Include="SpeechAnalyser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\CsvView.cs" />
-    <Compile Include="Views\SgfView.cs" />
+    <Compile Include="Models\SpeechModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\IGOEnchi.GoGameAnalytic\IGOPhoenix.GameAnalysisLib.csproj">
-      <Project>{6B505A8E-6F0C-4AFB-9728-9B67C19A1FDB}</Project>
-      <Name>IGOPhoenix.GameAnalysisLib</Name>
-    </ProjectReference>
     <ProjectReference Include="..\IGOEnchi.GoGameLib\IGOEnchi.GoGameLogic.csproj">
-      <Project>{cce0648c-b6e9-48a8-9647-6202faf8bc6d}</Project>
+      <Project>{CCE0648C-B6E9-48A8-9647-6202FAF8BC6D}</Project>
       <Name>IGOEnchi.GoGameLogic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IGOEnchi.GoGameSgf\IGOEnchi.GoGameSgf.csproj">
-      <Project>{872b91c3-569e-44e8-86ea-3441bc6243a9}</Project>
-      <Name>IGOEnchi.GoGameSgf</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IGOEnchi.SmartGameLib\IGOEnchi.SmartGameLib.csproj">
-      <Project>{b637ca39-a3c2-4b5e-abed-f114e217b436}</Project>
-      <Name>IGOEnchi.SmartGameLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IGOPhoenix.Analysis.SpeechOfStones\IGOPhoenix.Analysis.SpeechOfStones.csproj">
-      <Project>{B07EC889-E178-4415-B945-2A271896946F}</Project>
-      <Name>IGOPhoenix.Analysis.SpeechOfStones</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

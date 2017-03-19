@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IGOEnchi.BruGoClientLib", "IGOEnchi.BruGoClientLib\IGOEnchi.BruGoClientLib.csproj", "{F4CF9A6F-D9FB-4CCC-8934-43336CEFE1F3}"
 EndProject
@@ -34,6 +34,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "analysis", "analysis", "{21E21CF6-70E6-4A6D-AE64-5C9EC3E00D2A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IGOPhoenix.GameAnalysis", "IGOPhoenix.GoAnalysis\IGOPhoenix.GameAnalysis.csproj", "{36312BDC-21A9-44BF-A3B7-86C65E696175}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IGOPhoenix.Analysis.SpeechOfStones", "IGOPhoenix.Analysis.SpeechOfStones\IGOPhoenix.Analysis.SpeechOfStones.csproj", "{B07EC889-E178-4415-B945-2A271896946F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IGOPhoenix.Analysis.SpeechOfStones.Test", "IGOPhoenix.Analysis.SpeechOfStones.Test\IGOPhoenix.Analysis.SpeechOfStones.Test.csproj", "{18ED334B-7745-4DD8-9C0F-1E83B1509D7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -137,6 +141,22 @@ Global
 		{36312BDC-21A9-44BF-A3B7-86C65E696175}.Release|Any CPU.Build.0 = Release|Any CPU
 		{36312BDC-21A9-44BF-A3B7-86C65E696175}.Release|x86.ActiveCfg = Release|Any CPU
 		{36312BDC-21A9-44BF-A3B7-86C65E696175}.Release|x86.Build.0 = Release|Any CPU
+		{B07EC889-E178-4415-B945-2A271896946F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B07EC889-E178-4415-B945-2A271896946F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B07EC889-E178-4415-B945-2A271896946F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B07EC889-E178-4415-B945-2A271896946F}.Debug|x86.Build.0 = Debug|Any CPU
+		{B07EC889-E178-4415-B945-2A271896946F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B07EC889-E178-4415-B945-2A271896946F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B07EC889-E178-4415-B945-2A271896946F}.Release|x86.ActiveCfg = Release|Any CPU
+		{B07EC889-E178-4415-B945-2A271896946F}.Release|x86.Build.0 = Release|Any CPU
+		{18ED334B-7745-4DD8-9C0F-1E83B1509D7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18ED334B-7745-4DD8-9C0F-1E83B1509D7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18ED334B-7745-4DD8-9C0F-1E83B1509D7A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{18ED334B-7745-4DD8-9C0F-1E83B1509D7A}.Debug|x86.Build.0 = Debug|Any CPU
+		{18ED334B-7745-4DD8-9C0F-1E83B1509D7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18ED334B-7745-4DD8-9C0F-1E83B1509D7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18ED334B-7745-4DD8-9C0F-1E83B1509D7A}.Release|x86.ActiveCfg = Release|Any CPU
+		{18ED334B-7745-4DD8-9C0F-1E83B1509D7A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -155,5 +175,7 @@ Global
 		{595303A6-8F62-4483-85EE-60DD54A16369} = {21E21CF6-70E6-4A6D-AE64-5C9EC3E00D2A}
 		{21E21CF6-70E6-4A6D-AE64-5C9EC3E00D2A} = {B5E02AB5-5DFA-43BF-9182-B2B08EBE84DF}
 		{36312BDC-21A9-44BF-A3B7-86C65E696175} = {21E21CF6-70E6-4A6D-AE64-5C9EC3E00D2A}
+		{B07EC889-E178-4415-B945-2A271896946F} = {21E21CF6-70E6-4A6D-AE64-5C9EC3E00D2A}
+		{18ED334B-7745-4DD8-9C0F-1E83B1509D7A} = {21E21CF6-70E6-4A6D-AE64-5C9EC3E00D2A}
 	EndGlobalSection
 EndGlobal

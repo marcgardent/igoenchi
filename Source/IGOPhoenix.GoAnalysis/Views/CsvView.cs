@@ -10,7 +10,6 @@ namespace IGOPhoenix.GameAnalysis.views
     /// </summary>
     public class CsvView
     {
-        private readonly string _path;
         private readonly IEnumerable<GoStat> Statistics;
 
         public CsvView(IEnumerable<GoStat> statistics)

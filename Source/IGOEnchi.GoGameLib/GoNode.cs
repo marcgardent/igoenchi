@@ -7,7 +7,7 @@ namespace IGOEnchi.GoGameLogic
     {
         protected Board board;
 
-        public GoNode(GoNode parentNode, bool makeBoards)
+        protected GoNode(GoNode parentNode, bool makeBoards)
         {
             ChildNodes = new List<GoNode>();
             if (parentNode != null)

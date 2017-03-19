@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using IGOEnchi.GoGameLogic;
+using IGOPhoenix.Analysis.SpeechOfStones.Models;
 using NUnit.Framework;
 
 namespace IGOPhoenix.Analysis.SpeechOfStones.Test
@@ -34,27 +35,24 @@ namespace IGOPhoenix.Analysis.SpeechOfStones.Test
                         .SetName("When first stone:White, board:White");
             }
         }
-
-        [Test, TestCaseSource(typeof (SpeechAnalyserTest), nameof(SpeechAnalyserTest.Do_No_Ranks_Cases))]
+        [Order(0), Test, TestCaseSource(typeof (SpeechAnalyserTest), nameof(SpeechAnalyserTest.Do_No_Ranks_Cases))]
         public void Do_No_Ranks(Stone stone, IEnumerable<ICoords> blacks, IEnumerable<ICoords> whites)
         {
             var target = new SpeechAnalyser();
             var actual = target.AnalyseStep(stone, blacks, whites);
 
-            Assert.AreEqual(0, actual.FirstRank.Count());
-            Assert.AreEqual(0, actual.SecondRank.Count());
+            Assert.AreEqual(0, actual.Ranks.Count);
         }
 
 
         public struct RankAssert
         {
-            public int firstRankCount;
-            public byte firstRankDistance;
-            public int secondRankCount;
-            public byte secondRankDistance;
+            public int BlackCount;
+            public int WhiteCount;
+            public byte Distance;
         }
 
-        public static IEnumerable Do_Good_Distance_And_Count_Ranks_Cases
+        public static IEnumerable Do_Parse_Ranks_Cases
         {
             get
             {
@@ -62,35 +60,108 @@ namespace IGOPhoenix.Analysis.SpeechOfStones.Test
                     new TestCaseData(new Stone(20, 10, false),
                         new List<ICoords>() {new Coords(10, 10)},
                         new List<ICoords>() {new Coords(20, 10)},
-                        new RankAssert(){ firstRankCount = 1, firstRankDistance = 10, secondRankCount = 0, secondRankDistance = 0 })
-                    .SetName("Second turn of game");
+                        new[] { new RankAssert() { Distance = 10, BlackCount = 1, WhiteCount = 0} })
+                    .SetName("When play second turn of game");
 
                 yield return
-                    new TestCaseData(new Stone(20, 10, true),
-                    new List<ICoords>() { new Coords(10, 10), new Coords(30, 10) },
-                    new List<ICoords>() { new Coords(20, 10) },
-                    new RankAssert() { firstRankCount = 2, firstRankDistance = 10, secondRankCount = 0, secondRankDistance = 0 })
-                    .SetName("When all stones are first rank");
+                    new TestCaseData(new Stone(10, 10, true),
+                        new List<ICoords>() { new Coords(10, 10), new Coords(10, 20) },
+                        new List<ICoords>() { new Coords(20, 10), new Coords(0, 10) },
+                        new[] { new RankAssert() { Distance = 10, BlackCount = 1, WhiteCount = 2 } })
+                    .SetName("When Black and White stones in a Rank");
+
+                yield return
+                    new TestCaseData(new Stone(10, 10, false),
+                        new List<ICoords>() { new Coords(20, 10), new Coords(0, 10) },
+                        new List<ICoords>() { new Coords(10, 10), new Coords(10, 20) },
+                        new[] { new RankAssert() { Distance = 10, BlackCount = 2, WhiteCount = 1 } })
+                    .SetName("When White and Black stones in  a Rank");
+
+
+                yield return
+                    new TestCaseData(new Stone(20, 10, false),
+                        new List<ICoords>() {new Coords(10, 10), new Coords(20, 20) },
+                        new List<ICoords>() {new Coords(20, 10), new Coords(30, 10) },
+                        new[] { new RankAssert() {Distance = 10, BlackCount = 2, WhiteCount = 1}})
+                    .SetName("When are only one rank");
 
                 yield return
                     new TestCaseData(new Stone(10, 10, true),
                     new List<ICoords>() { new Coords(10, 10) },
                     new List<ICoords>() { new Coords(20, 10), new Coords(30, 10), new Coords(40, 10) },
-                    new RankAssert() { firstRankCount = 1, firstRankDistance = 10, secondRankCount = 1, secondRankDistance = 20 })
-                    .SetName("When there are third rank");
+                    new[] {
+                        new RankAssert() { Distance = 10, BlackCount = 0, WhiteCount = 1 },
+                        new RankAssert() { Distance = 20, BlackCount = 0, WhiteCount = 1 },
+                        new RankAssert() { Distance = 30, BlackCount = 0, WhiteCount = 1 } 
+                    })
+                    .SetName("When there are three ranks");
             }
         }
 
-        [Test, TestCaseSource(typeof(SpeechAnalyserTest), nameof(SpeechAnalyserTest.Do_Good_Distance_And_Count_Ranks_Cases))]
-        public void Do_Good_Distance_And_Count_Ranks(Stone stone, IEnumerable<ICoords> blacks, IEnumerable<ICoords> whites, RankAssert asserts)
+        [Order(1), Test, TestCaseSource(typeof (SpeechAnalyserTest), nameof(SpeechAnalyserTest.Do_Parse_Ranks_Cases))]
+        public void Do_Count_Ranks(Stone stone, IEnumerable<ICoords> blacks, IEnumerable<ICoords> whites, RankAssert[] excepted)
         {
             var target = new SpeechAnalyser();
             var actual = target.AnalyseStep(stone, blacks, whites);
-            Assert.AreEqual(asserts.firstRankCount, actual.FirstRank.Count());
-            Assert.AreEqual(asserts.secondRankCount, actual.SecondRank.Count());
 
-            Assert.IsFalse(actual.FirstRank.Any(x => x.Distance!= asserts.firstRankDistance), $"Excepted FirstRank ={asserts.firstRankDistance}");
-            Assert.IsFalse(actual.SecondRank.Any(x => x.Distance!= asserts.secondRankDistance), $"Excepted SecondRank ={asserts.secondRankDistance}");
+            Assert.AreEqual(excepted.Length, actual.Ranks.Count);
+        }
+
+
+        [Order(2), Test, TestCaseSource(typeof(SpeechAnalyserTest), nameof(SpeechAnalyserTest.Do_Parse_Ranks_Cases))]
+        public void Do_Distance_Ranks(Stone stone, IEnumerable<ICoords> blacks, IEnumerable<ICoords> whites,RankAssert[] excepted)
+        {
+            var target = new SpeechAnalyser();
+            var actual = target.AnalyseStep(stone, blacks, whites);
+
+            for (int i = 0; i < actual.Ranks.Count; i++)
+            {
+                RankAssert exceptedRank = excepted[i];
+                RankModel actualRank = actual.Ranks[i];
+                Assert.AreEqual(exceptedRank.Distance, actualRank.Distance, $"Distance Rank {i}");
+            }
+        }
+
+        [Order(2), Test, TestCaseSource(typeof(SpeechAnalyserTest), nameof(SpeechAnalyserTest.Do_Parse_Ranks_Cases))]
+        public void Do_TotalCount_Ranks(Stone stone, IEnumerable<ICoords> blacks, IEnumerable<ICoords> whites, RankAssert[] excepted)
+        {
+            var target = new SpeechAnalyser();
+            var actual = target.AnalyseStep(stone, blacks, whites);
+
+            for (int i = 0; i < actual.Ranks.Count; i++)
+            {
+                RankAssert exceptedRank = excepted[i];
+                RankModel actualRank = actual.Ranks[i];
+                Assert.AreEqual(exceptedRank.WhiteCount + exceptedRank.BlackCount, actualRank.Stones.Count(), $"TotalCount Rank #{i + 1}");
+            }
+        }
+
+        [Order(3), Test, TestCaseSource(typeof(SpeechAnalyserTest), nameof(SpeechAnalyserTest.Do_Parse_Ranks_Cases))]
+        public void Do_BlackCount_Ranks(Stone stone, IEnumerable<ICoords> blacks, IEnumerable<ICoords> whites, RankAssert[] excepted)
+        {
+            var target = new SpeechAnalyser();
+            var actual = target.AnalyseStep(stone, blacks, whites);
+
+            for (int i = 0; i < actual.Ranks.Count; i++)
+            {
+                RankAssert exceptedRank = excepted[i];
+                RankModel actualRank = actual.Ranks[i];
+                Assert.AreEqual(exceptedRank.BlackCount, actualRank.Stones.Count(x => x.IsBlack), $"BlackCount Rank #{i + 1}");
+            }
+        }
+
+        [Order(3), Test, TestCaseSource(typeof(SpeechAnalyserTest), nameof(SpeechAnalyserTest.Do_Parse_Ranks_Cases))]
+        public void Do_WhiteCount_Ranks(Stone stone, IEnumerable<ICoords> blacks, IEnumerable<ICoords> whites, RankAssert[] excepted)
+        {
+            var target = new SpeechAnalyser();
+            var actual = target.AnalyseStep(stone, blacks, whites);
+
+            for (int i = 0; i < actual.Ranks.Count; i++)
+            {
+                RankAssert exceptedRank = excepted[i];
+                RankModel actualRank = actual.Ranks[i];
+                Assert.AreEqual(exceptedRank.WhiteCount, actualRank.Stones.Count(x => !x.IsBlack), $"WhiteCount Rank #{i + 1}");
+            }
         }
     }
 }

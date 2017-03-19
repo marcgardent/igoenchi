@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\LinkModel.cs" />
+    <Compile Include="Models\RankModel.cs" />
     <Compile Include="SpeechAnalyser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\SpeechModel.cs" />

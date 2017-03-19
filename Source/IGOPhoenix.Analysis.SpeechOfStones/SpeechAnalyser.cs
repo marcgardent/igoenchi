@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using IGOEnchi.GoGameLogic;
 using IGOPhoenix.Analysis.SpeechOfStones.Models;
 
@@ -14,27 +11,13 @@ namespace IGOPhoenix.Analysis.SpeechOfStones
         {
  
             var links = GetLinks(stone, blacks, whites).OrderBy(x => x.Distance).ToArray();
-            var first = links.FirstOrDefault();
-            if (first != null)
-            {
-                var firstRank = links.TakeWhile(x => x.Distance == first.Distance).ToArray();
 
-                if (firstRank.Count() == 1 && links.Count() >= 2)
-                {
-                    var second = links.Skip(1).First();
-                    var secondRank = links.Skip(1).TakeWhile(x => Math.Abs(x.Distance - second.Distance) < 0.4).ToArray();
+            var ranks= links
+                    .GroupBy(x=> x.Distance)
+                    .Select(x=> new RankModel(x.Select(s=>s.Stone).ToArray(), x.Key))
+                    .OrderBy(x=>x.Distance).ToList();
 
-                    return new SpeechModel(firstRank, secondRank);
-                }
-                else
-                {
-                    return new SpeechModel(firstRank, new List<LinkModel>());
-                }
-            }
-            else
-            {
-                return new SpeechModel(new List<LinkModel>(), new List<LinkModel>());
-            }            
+            return new SpeechModel(ranks);
         }
 
         private IEnumerable<LinkModel> GetLinks(ICoords stone, IEnumerable<ICoords> blacks, IEnumerable<ICoords> whites)

@@ -27,7 +27,7 @@ namespace IGOPhoenix.Analysis.SpeechOfStones.Models
         public static LinkModel LinkFactory(ICoords stone, ICoords coords, bool isBlack)
         {
             return new LinkModel(
-                stone : new Stone(coords.X, coords.Y, true),
+                stone : new Stone(coords.X, coords.Y, isBlack),
                 distance : (byte)(Math.Abs(stone.X - coords.X) + Math.Abs(stone.Y - coords.Y))
                 );
         }

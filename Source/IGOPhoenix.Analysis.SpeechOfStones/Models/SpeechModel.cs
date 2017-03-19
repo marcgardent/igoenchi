@@ -2,16 +2,13 @@
 
 namespace IGOPhoenix.Analysis.SpeechOfStones.Models
 {
-    
     public class SpeechModel
     {
-        public readonly IEnumerable<LinkModel> FirstRank;
-        public readonly IEnumerable<LinkModel> SecondRank;
-
-        public SpeechModel(IEnumerable<LinkModel> firstRank, IEnumerable<LinkModel> secondRank)
+        public readonly IList<RankModel> Ranks;
+        
+        public SpeechModel(IList<RankModel> ranks)
         {
-            FirstRank = firstRank;
-            SecondRank = secondRank;
+            Ranks = ranks;
         }
     }
 }

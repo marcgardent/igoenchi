@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\CsvView.cs" />
+    <Compile Include="Views\SgfView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

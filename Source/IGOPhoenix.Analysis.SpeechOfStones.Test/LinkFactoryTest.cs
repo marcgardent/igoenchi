@@ -1,6 +1,6 @@
 using System.Collections;
 using IGOEnchi.GoGameLogic;
-using IGOPhoenix.Analysis.SpeechOfStones.Models;
+using IGOPhoenix.Analysis.SpeechOfStones.Ranks.Models;
 using NUnit.Framework;
 
 namespace IGOPhoenix.Analysis.SpeechOfStones.Test

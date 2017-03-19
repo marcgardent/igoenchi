@@ -9,6 +9,7 @@ namespace IGOEnchi.GoGameLogic
         public byte Y { set; get; }
 
         public bool IsBlack { set; get; }
+        public bool IsWhite => !IsBlack;
 
         public Stone()
         {

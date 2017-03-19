@@ -1,23 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using IGOEnchi.GoGameLogic;
-using IGOPhoenix.Analysis.SpeechOfStones.Models;
+using IGOPhoenix.Analysis.SpeechOfStones.Ranks.Models;
 
-namespace IGOPhoenix.Analysis.SpeechOfStones
+namespace IGOPhoenix.Analysis.SpeechOfStones.Ranks
 {
-    public class SpeechAnalyser
+    public class RankParser
     { 
-        public SpeechModel AnalyseStep(Stone stone, IEnumerable<ICoords> blacks, IEnumerable<ICoords> whites)
+        public IList<RankModel> Parse(Stone stone, IEnumerable<ICoords> blacks, IEnumerable<ICoords> whites)
         {
  
             var links = GetLinks(stone, blacks, whites).OrderBy(x => x.Distance).ToArray();
-
             var ranks= links
                     .GroupBy(x=> x.Distance)
                     .Select(x=> new RankModel(x.Select(s=>s.Stone).ToArray(), x.Key))
                     .OrderBy(x=>x.Distance).ToList();
 
-            return new SpeechModel(ranks);
+            return ranks;
         }
 
         private IEnumerable<LinkModel> GetLinks(ICoords stone, IEnumerable<ICoords> blacks, IEnumerable<ICoords> whites)

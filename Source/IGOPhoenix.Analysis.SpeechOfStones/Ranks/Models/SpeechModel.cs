@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace IGOPhoenix.Analysis.SpeechOfStones.Models
+namespace IGOPhoenix.Analysis.SpeechOfStones.Ranks.Models
 {
     public class SpeechModel
     {

@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using IGOEnchi.GoGameLogic;
 
-namespace IGOPhoenix.Analysis.SpeechOfStones.Models
+namespace IGOPhoenix.Analysis.SpeechOfStones.Ranks.Models
 {
     public class RankModel
     {
@@ -13,5 +14,9 @@ namespace IGOPhoenix.Analysis.SpeechOfStones.Models
             Stones = stones;
             Distance = distance;
         }
+
+        public bool AllIsBlack => this.Stones.All(x => x.IsBlack);
+        public bool AllIsWhite => this.Stones.All(x=>x.IsWhite);
+
     }
 }

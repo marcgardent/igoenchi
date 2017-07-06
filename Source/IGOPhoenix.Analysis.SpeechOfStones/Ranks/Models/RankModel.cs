@@ -18,5 +18,6 @@ namespace IGOPhoenix.Analysis.SpeechOfStones.Ranks.Models
         public bool AllIsBlack => this.Stones.All(x => x.IsBlack);
         public bool AllIsWhite => this.Stones.All(x=>x.IsWhite);
 
+        public bool AllIs(bool isBlack) => this.Stones.All(x => x.IsBlack == isBlack);
     }
 }

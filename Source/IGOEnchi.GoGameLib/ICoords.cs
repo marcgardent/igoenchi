@@ -5,4 +5,5 @@ namespace IGOEnchi.GoGameLogic
         byte X { get;  }
         byte Y { get;  }
     }
+    
 }

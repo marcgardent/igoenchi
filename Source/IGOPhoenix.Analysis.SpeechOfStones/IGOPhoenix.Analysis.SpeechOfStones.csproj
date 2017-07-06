@@ -45,12 +45,16 @@
     <Compile Include="Ranks\RankParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ranks\Models\SpeechModel.cs" />
+    <Compile Include="Speechs\SpeechAnalyser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IGOEnchi.GoGameLib\IGOEnchi.GoGameLogic.csproj">
       <Project>{CCE0648C-B6E9-48A8-9647-6202FAF8BC6D}</Project>
       <Name>IGOEnchi.GoGameLogic</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Speechs\Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

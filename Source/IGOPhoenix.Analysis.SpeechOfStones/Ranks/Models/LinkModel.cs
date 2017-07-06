@@ -14,7 +14,7 @@ namespace IGOPhoenix.Analysis.SpeechOfStones.Ranks.Models
         /// </summary>
         public readonly byte Distance;
 
-        LinkModel(Stone stone, byte distance)
+        public LinkModel(Stone stone, byte distance)
         {
             Stone = stone;
             Distance = distance;

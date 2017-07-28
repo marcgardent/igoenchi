@@ -160,8 +160,7 @@ namespace IGOPhoenix.GameAnalysis
                 }
             }
         }
-
-
+        
         private static GoGame OpenFile(string path)
         {
             using (var stream = File.OpenRead(path))

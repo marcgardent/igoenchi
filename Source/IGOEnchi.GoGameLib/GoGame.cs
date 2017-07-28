@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace IGOEnchi.GoGameLogic
 {
@@ -324,6 +325,19 @@ namespace IGOEnchi.GoGameLogic
             while (this.ToPreviousMove())
             {
             }
+        }
+
+        public IEnumerable<GoMoveNode> EnumerateMoves()
+        {
+            do
+            {
+                var move = this.CurrentNode as GoMoveNode;
+                
+                if (move != null)
+                {
+                    yield return move;
+                }
+            } while (this.ToNextMove());
         }
     }
 }

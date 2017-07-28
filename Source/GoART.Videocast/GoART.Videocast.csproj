@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DF901F15-B421-4517-95F3-08062A89FE3A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IGOEnchi.Videocast</RootNamespace>
+    <AssemblyName>IGOEnchi.Videocast</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentCommandLineParser, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentCommandLineParser.1.4.3\lib\net35\FluentCommandLineParser.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rendering\IGobanRender.cs" />
+    <Compile Include="Rendering\NativeImpl\Models\GobanColor.cs" />
+    <Compile Include="Rendering\NativeImpl\Models\GobanGeometry.cs" />
+    <Compile Include="Rendering\NativeImpl\NativeGobanRenderImpl.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GoART.FfmpegIntegration\GoART.FfmpegIntegration.csproj">
+      <Project>{86ABA7D3-C75F-496C-9B96-1B977A62A3A5}</Project>
+      <Name>GoART.FfmpegIntegration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoART.NAudioIntegration\GoART.NAudioIntegration.csproj">
+      <Project>{C4613B1C-FC1D-46EB-9BD7-D17F298EE87A}</Project>
+      <Name>GoART.NAudioIntegration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IGOEnchi.GoGameLib\IGOEnchi.GoGameLogic.csproj">
+      <Project>{CCE0648C-B6E9-48A8-9647-6202FAF8BC6D}</Project>
+      <Name>IGOEnchi.GoGameLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IGOEnchi.GoGameSgf\IGOEnchi.GoGameSgf.csproj">
+      <Project>{872B91C3-569E-44E8-86EA-3441BC6243A9}</Project>
+      <Name>IGOEnchi.GoGameSgf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IGOEnchi.SmartGameLib\IGOEnchi.SmartGameLib.csproj">
+      <Project>{B637CA39-A3C2-4B5E-ABED-F114E217B436}</Project>
+      <Name>IGOEnchi.SmartGameLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\FFmpeg.Win64.Static.3.2.2.1\build\FFmpeg.Win64.Static.targets" Condition="Exists('..\packages\FFmpeg.Win64.Static.3.2.2.1\build\FFmpeg.Win64.Static.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Utilisez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est : {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\FFmpeg.Win64.Static.3.2.2.1\build\FFmpeg.Win64.Static.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\FFmpeg.Win64.Static.3.2.2.1\build\FFmpeg.Win64.Static.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

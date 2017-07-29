@@ -48,13 +48,17 @@ namespace GoART.FfmpegIntegration
 
         public void SaveAsMP4(string output)
         {
-            var arguments = $"-y -r {framerate} -start_number 0  -i \"{temp.Folder}\\encoding-ffmpeg-%5d.png\" -i \"{audioFile}\" -c:v libx264 -preset veryfast -crf 1  -c:a aac -b:a 128k -vf \"fps=24,format=yuv420p\" -metadata title=\"GoART Ludopant\"   \"{output}\"";
+
+            var arguments = $@"-y -r {framerate} -start_number 0  -i ""{temp.Folder}\encoding-ffmpeg-%5d.png"" -i ""{audioFile}"" -c:v libx264 -preset veryfast -profile:v high -crf 1 -coder 1 -vf ""fps=24,format=yuv420p"" -movflags +faststart -g 30 -bf 2 -c:a aac -b:a 192k -profile:a aac_low  -metadata title=""GoART Production"" ""{output}""";
             var handler = Process.Start(new ProcessStartInfo(ffmpeg, arguments));
             handler.WaitForExit();
         }
         public void SaveAsMP4Release(string output)
         {
-            var arguments = $"-y -r {framerate} -start_number 0  -i \"{temp.Folder}\\encoding-ffmpeg-%5d.png\" -i \"{audioFile}\" -c:v libx264 -preset veryslow -crf 1  -c:a aac -b:a 128k -vf \"fps=24,format=yuv420p\" -metadata title=\"GoART Ludopant\"   \"{output}\"";
+
+
+            var arguments =
+                $@"-y -r {framerate} -start_number 0  -i ""{temp.Folder}\encoding-ffmpeg-%5d.png"" -i ""{audioFile}"" -c:v libx264 -preset slow -profile:v high -crf 18 -coder 1 -vf ""fps=24,format=yuv420p"" -movflags +faststart -g 30 -bf 2 -c:a aac -b:a 192k -profile:a aac_low  -metadata title=""GoART Production"" ""{output}""";
             var handler = Process.Start(new ProcessStartInfo(ffmpeg, arguments));
             handler.WaitForExit();
         }

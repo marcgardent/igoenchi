@@ -20,6 +20,20 @@ namespace IGOEnchi.GoGameLogic
 
         public BitPlane White { get; private set; }
 
+        public IEnumerable<ICoords> AllCoords
+        {
+            get
+            {
+                for (byte x = 0; x < this.Size; x++)
+                {
+                    for (byte y = 0; y < this.Size; y++)
+                    {
+                        yield return new Coords(x,y);
+                    }
+                }
+            }
+        }
+
         public byte Size
         {
             get { return Black.Width; }

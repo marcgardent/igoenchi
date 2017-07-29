@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using Fclp;
@@ -7,8 +8,10 @@ using GoART.NAudioIntegration;
 using IGOEnchi.GoGameLogic;
 using IGOEnchi.GoGameSgf;
 using IGOEnchi.SmartGameLib;
+using IGOEnchi.Videocast.Rendering;
 using IGOEnchi.Videocast.Rendering.NativeImpl;
 using IGOEnchi.Videocast.Rendering.NativeImpl.Models;
+using IGOPhoenix.GoGameAnalytic.BitPlaneParsing;
 
 namespace IGOEnchi.Videocast
 {
@@ -31,7 +34,7 @@ namespace IGOEnchi.Videocast
 
             return p;
         }
-         
+
         private static void Main(string[] args)
         {
             // ex. --input "C:\Users\Marc\Desktop\parties GO\Meijin-2015\meijin-2015-1.sgf" --output "D:\temp\video\meijin-2015-1.mp4" --temp "D:\temp\video\"
@@ -48,11 +51,13 @@ namespace IGOEnchi.Videocast
                 Main(p.Object);
             }
         }
-        
-        private static void Main(GoArtEnvironement env) {
+
+        private static void Main(GoArtEnvironement env)
+        {
 
             var game = OpenFile(env.Input);
-
+            var resolution = 120; //release 240
+            var samplerate = 8000; //release 48000
             var framerate = 4;
             var bar = 1; //measure
             var whole = 1.0/framerate; // time of whole
@@ -61,23 +66,33 @@ namespace IGOEnchi.Videocast
                 var encoding = new FfmpegEncoding(temp, framerate);
 
                 using (var wav = encoding.WavStream())
-                using (var goban = new NativeGobanRenderImpl(GobanGeometry.TumblrResolution, GobanColor.BlackTheme))
+                using (IGobanRenderAsImage goban = new GobanComposer(GobanColor.BlackTheme, game.BoardSize, resolution))
                 {
                     game.ToStart();
                     var count = game.EnumerateMoves().Count();
 
                     var t = new EqualTemperamentTonesProvider();
                     var d = new DurationNoteProvider(TimeSpan.FromSeconds(whole));
-                    var c = new MusicalCompositor(TimeSpan.FromSeconds(whole*count*bar), 48000);
+                    var c = new MusicalCompositor(TimeSpan.FromSeconds(whole*count*bar), samplerate);
                     var m = new Metronome(TimeSpan.FromSeconds(whole));
                     var main = new DiatonicScaleTonesProvider(t, 4);
                     var second = new DiatonicScaleTonesProvider(t, 2);
+
                     game.ToStart();
 
                     GoMoveNode lastmove = null;
                     foreach (var move in game.EnumerateMoves())
                     {
                         goban.ClearGoban();
+                        var whiteMap = new InfluenceMap(game.board.White);
+                        var blackMap = new InfluenceMap(game.board.Black);
+
+                        foreach (var coord in game.board.AllCoords)
+                        {
+                            var white = whiteMap.GetByte(coord.X, coord.Y);
+                            var black = blackMap.GetByte(coord.X, coord.Y);
+                            goban.Influence(coord.X, coord.Y, black, white);
+                        }
 
                         goban.SetBlack();
                         foreach (var coord in game.board.White.Unabled)

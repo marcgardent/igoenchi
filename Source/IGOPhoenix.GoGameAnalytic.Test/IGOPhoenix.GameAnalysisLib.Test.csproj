@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="BitPlaneTestHelper.cs" />
     <Compile Include="GroupParserTest.cs" />
+    <Compile Include="InfluenceMapTest.cs" />
     <Compile Include="LibertiesParserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

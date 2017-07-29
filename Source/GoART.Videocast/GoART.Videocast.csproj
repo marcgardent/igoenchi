@@ -52,6 +52,8 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rendering\NativeImpl\GobanComposer.cs" />
+    <Compile Include="Rendering\NativeImpl\GobanRenderTransform.cs" />
     <Compile Include="Rendering\IGobanRender.cs" />
     <Compile Include="Rendering\NativeImpl\Models\GobanColor.cs" />
     <Compile Include="Rendering\NativeImpl\Models\GobanGeometry.cs" />
@@ -69,6 +71,10 @@
     <ProjectReference Include="..\GoART.NAudioIntegration\GoART.NAudioIntegration.csproj">
       <Project>{C4613B1C-FC1D-46EB-9BD7-D17F298EE87A}</Project>
       <Name>GoART.NAudioIntegration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IGOEnchi.GoGameAnalytic\IGOPhoenix.GameAnalysisLib.csproj">
+      <Project>{6B505A8E-6F0C-4AFB-9728-9B67C19A1FDB}</Project>
+      <Name>IGOPhoenix.GameAnalysisLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\IGOEnchi.GoGameLib\IGOEnchi.GoGameLogic.csproj">
       <Project>{CCE0648C-B6E9-48A8-9647-6202FAF8BC6D}</Project>

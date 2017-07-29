@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="Analyser.cs" />
     <Compile Include="BitPlaneParsing\AnalyticHelper.cs" />
+    <Compile Include="BitPlaneParsing\InfluenceMap.cs" />
     <Compile Include="BitPlaneParsing\LibertiesParser.cs" />
+    <Compile Include="Geometry\Ray.cs" />
     <Compile Include="Models\ChainStat.cs" />
     <Compile Include="Models\GoDynamic.cs" />
     <Compile Include="Models\GoPlayerStat.cs" />

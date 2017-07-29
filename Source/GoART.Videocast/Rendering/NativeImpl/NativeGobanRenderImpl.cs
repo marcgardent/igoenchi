@@ -9,7 +9,7 @@ namespace IGOEnchi.Videocast.Rendering.NativeImpl
 {
     public class NativeGobanRenderImpl : IGobanRender
     {
-        private readonly Bitmap bitmap;
+        
         private readonly Brush blackFill;
         private readonly Pen blackStroke;
         private readonly GobanColor color;
@@ -24,31 +24,33 @@ namespace IGOEnchi.Videocast.Rendering.NativeImpl
 
 
         private bool isBlack;
+        private readonly SolidBrush backgroundFill;
 
-        public NativeGobanRenderImpl(GobanGeometry geometry, GobanColor color)
+        public NativeGobanRenderImpl(Graphics context,GobanGeometry geometry, GobanColor color)
         {
             this.geometry = geometry;
             this.color = color;
-            bitmap = new Bitmap(this.geometry.widthPx, this.geometry.heightPx);
-            context = Graphics.FromImage(bitmap);
+            this.context = context;
+            
+            
             context.SmoothingMode = SmoothingMode.HighQuality;
             gridStroke = new Pen(this.color.GridStroke, this.geometry.strokePx);
 
+            backgroundFill = new SolidBrush(color.Background);
             blackFill = new SolidBrush(Color.Black);
             whiteFill = new SolidBrush(Color.White);
             blackStroke = new Pen(color.BlackStroke, geometry.strokePx);
             whiteStroke = new Pen(color.WhiteStroke, geometry.strokePx);
             focusStroke = new Pen(color.FocusStroke, geometry.focusStrokePx);
         }
-
-
+         
         private Brush StoneFill => isBlack ? blackFill : whiteFill;
         private Pen StoneStroke => isBlack ? blackStroke : whiteStroke;
 
         public void ClearGoban()
         {
-            context.Clear(color.Background);
-
+            
+            context.FillRectangle(backgroundFill,geometry.GobanRect);
             foreach (var horizontal in geometry.Lines())
             {
                 context.DrawLine(gridStroke, horizontal.X, horizontal.Y, horizontal.Right, horizontal.Bottom);
@@ -65,9 +67,9 @@ namespace IGOEnchi.Videocast.Rendering.NativeImpl
             isBlack = false;
         }
 
-        public void Outline(byte x, byte y)
+        public void Outline(byte x, byte y, Color color)
         {
-            throw new NotImplementedException();
+            context.FillRectangle(new SolidBrush(color), geometry.IntersectionBound(x, y));
         }
 
         public void Stone(byte x, byte y)
@@ -81,18 +83,6 @@ namespace IGOEnchi.Videocast.Rendering.NativeImpl
             var rect = geometry.IntersectionSemiBound(x, y);
 
             context.DrawEllipse(focusStroke, rect);
-        }
-
-        public void ReadPng(Stream outstream)
-        {
-            context.Flush();
-            bitmap.Save(outstream, ImageFormat.Png);
-        }
-
-        public void Dispose()
-        {
-            context.Dispose();
-            bitmap.Dispose();
         }
     }
 }

@@ -9,50 +9,50 @@ namespace IGOEnchi.Videocast.Rendering.NativeImpl.Models
     /// </summary>
     public class GobanGeometry
     {
-        public static GobanGeometry TumblrResolution = new GobanGeometry(500, 500, 19);
+        public static GobanGeometry TumblrResolution = new GobanGeometry(500, 19);
+        public static GobanGeometry DebugResolution = new GobanGeometry(320, 19);
+        public static GobanGeometry HighResolution = new GobanGeometry(1080, 19);
+        public static GobanGeometry UltraHighResolution = new GobanGeometry(2160, 19);
 
-        public static GobanGeometry DebugResolution = new GobanGeometry(640, 320, 19);
-        public static GobanGeometry HighResolution = new GobanGeometry(1920, 1080, 19);
-
-        public static GobanGeometry UltraHighResolution = new GobanGeometry(3840, 2160, 19);
-        public readonly int focusStrokePx;
+        public readonly float focusStrokePx;
         private readonly byte gridsize;
-        private readonly int gridStepPx;
-        private readonly int gridWidthPx;
-        public readonly int heightPx;
-        private readonly int marginLeftPx;
+        private readonly float gridStepPx;
+        private readonly float gridWidthPx;
+        
+        private readonly float marginLeftPx;
 
-        private readonly int marginTopPx;
-        public readonly int stoneSizePx;
-        public readonly int strokePx;
+        private readonly float marginTopPx;
+        public readonly float stoneSizePx;
+        public readonly float strokePx;
         public readonly int widthPx;
+        public readonly int heightPx;
 
         /// <summary>
         /// </summary>
-        /// <param name="widthPx">video size</param>
-        /// <param name="heightPx">video size</param>
+        /// <param name="resolutionPx">goban size (width & height)</param>
         /// <param name="gridsize">grid of goban (ex 19x19)</param>
-        public GobanGeometry(int widthPx, int heightPx, byte gridsize)
+        public GobanGeometry(int resolutionPx, byte gridsize)
         {
             this.gridsize = gridsize;
-            this.widthPx = widthPx;
-            this.heightPx = heightPx;
-            var min = Math.Min(widthPx, heightPx);
-            strokePx = Math.Max(min/480, 1);
-            gridStepPx = (int) (min*0.8/this.gridsize);
-
+            this.widthPx = resolutionPx;
+            this.heightPx = resolutionPx;
+            
+            strokePx = Math.Max(resolutionPx / 480, 1);
+            gridStepPx = (float)resolutionPx/(this.gridsize+1);
             gridWidthPx = gridStepPx*(this.gridsize - 1);
             stoneSizePx = (int) (gridStepPx*0.9);
             focusStrokePx = stoneSizePx/6;
             marginTopPx = gridStepPx;
-            marginLeftPx = (widthPx - gridWidthPx)/2;
+            marginLeftPx = gridStepPx;
         }
 
-        public IEnumerable<Rectangle> Lines()
+        public RectangleF GobanRect => new RectangleF(marginLeftPx, marginTopPx, gridsize * gridStepPx, gridsize * gridStepPx);
+
+        public IEnumerable<RectangleF> Lines()
         {
             for (byte y = 0; y < gridsize; y++)
             {
-                yield return new Rectangle(
+                yield return new RectangleF(
                     marginLeftPx,
                     marginTopPx + y*gridStepPx,
                     gridWidthPx, 0
@@ -61,7 +61,7 @@ namespace IGOEnchi.Videocast.Rendering.NativeImpl.Models
 
             for (byte x = 0; x < gridsize; x++)
             {
-                yield return new Rectangle(
+                yield return new RectangleF(
                     marginLeftPx + x*gridStepPx,
                     marginTopPx,
                     0, gridWidthPx
@@ -69,22 +69,22 @@ namespace IGOEnchi.Videocast.Rendering.NativeImpl.Models
             }
         }
 
-        public Point Intersection(int x, int y)
+        public PointF Intersection(int x, int y)
         {
-            return new Point(marginLeftPx + x*gridStepPx, marginTopPx + y*gridStepPx);
+            return new PointF(marginLeftPx + x*gridStepPx, marginTopPx + y*gridStepPx);
         }
 
-        public Rectangle IntersectionBound(int x, int y)
+        public RectangleF IntersectionBound(int x, int y)
         {
             var intesection = Intersection(x, y);
 
-            return new Rectangle(intesection.X - stoneSizePx/2, intesection.Y - stoneSizePx/2, stoneSizePx, stoneSizePx);
+            return new RectangleF(intesection.X - stoneSizePx/2, intesection.Y - stoneSizePx/2, stoneSizePx, stoneSizePx);
         }
 
-        public Rectangle IntersectionSemiBound(int x, int y)
+        public RectangleF IntersectionSemiBound(int x, int y)
         {
             var intesection = Intersection(x, y);
-            return new Rectangle(intesection.X - stoneSizePx/4, intesection.Y - stoneSizePx/4, stoneSizePx/2,
+            return new RectangleF(intesection.X - stoneSizePx/4, intesection.Y - stoneSizePx/4, stoneSizePx/2,
                 stoneSizePx/2);
         }
     }

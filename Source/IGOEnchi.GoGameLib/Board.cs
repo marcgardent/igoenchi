@@ -20,6 +20,8 @@ namespace IGOEnchi.GoGameLogic
 
         public BitPlane White { get; private set; }
 
+        public BitPlane BlackAndWhite => White.Or(Black);
+
         public IEnumerable<ICoords> AllCoords
         {
             get
@@ -34,10 +36,7 @@ namespace IGOEnchi.GoGameLogic
             }
         }
 
-        public byte Size
-        {
-            get { return Black.Width; }
-        }
+        public byte Size => Black.Width;
 
         public Board Copy()
         {

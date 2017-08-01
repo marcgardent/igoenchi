@@ -7,9 +7,6 @@ using IGOPhoenix.GoGameAnalytic.Models;
 
 namespace IGOPhoenix.GoGameAnalytic
 {
-
-
-
     public class Analyser
     {
         private readonly List<GoStat> _stat = new List<GoStat>();

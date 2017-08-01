@@ -76,18 +76,21 @@ namespace IGOEnchi.Videocast.Rendering.NativeImpl
             quinte.Outline(x, y, Color.FromArgb(128, white, 0,0));
             if (white == black)
             {
-                seconde.Outline(x, y, Color.FromArgb(128, white, white, white));
+                main.Outline(x, y, Color.FromArgb(128, white, white, white));
             }
             else if (white > black)
             {
-                seconde.Outline(x, y, Color.FromArgb(128, white, 0, 0));
+                main.Outline(x, y, Color.FromArgb(128, white, 0, 0));
             }
             else
             {
-                seconde.Outline(x, y, Color.FromArgb(128, 0, 0, black));
+                main.Outline(x, y, Color.FromArgb(128, 0, 0, black));
             }
-            
-            main.Outline(x, y, Color.FromArgb(128, white, 0, black));
+        }
+
+        public void Impact(byte x, byte y, byte intensity)
+        {
+            seconde.Outline(x, y, Color.FromArgb(128, intensity, intensity, intensity));
         }
 
         public void ReadPng(Stream outstream)

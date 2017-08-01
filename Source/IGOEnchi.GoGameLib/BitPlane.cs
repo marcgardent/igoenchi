@@ -27,6 +27,20 @@ namespace IGOEnchi.GoGameLogic
 
         public byte Height { get; private set; }
 
+        public IEnumerable<ICoords> AllCoords
+        {
+            get
+            {
+                for (byte x = 0; x < this.Width; x++)
+                {
+                    for (byte y = 0; y < this.Height; y++)
+                    {
+                        yield return new Coords(x, y);
+                    }
+                }
+            }
+        }
+
         public bool this[ICoords coords]
         {
             get { return this[coords.X, coords.Y]; }

@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using Fclp;
 using GoART.FfmpegIntegration;
 using GoART.NAudioIntegration;
@@ -11,7 +11,7 @@ using IGOEnchi.SmartGameLib;
 using IGOEnchi.Videocast.Rendering;
 using IGOEnchi.Videocast.Rendering.NativeImpl;
 using IGOEnchi.Videocast.Rendering.NativeImpl.Models;
-using IGOPhoenix.GoGameAnalytic.BitPlaneParsing;
+using IGOPhoenix.GoGameAnalytic.Maps.Influence.RayTracing;
 
 namespace IGOEnchi.Videocast
 {
@@ -66,7 +66,7 @@ namespace IGOEnchi.Videocast
                 var encoding = new FfmpegEncoding(temp, framerate);
 
                 using (var wav = encoding.WavStream())
-                using (IGobanRenderAsImage goban = new GobanComposer(GobanColor.BlackTheme, game.BoardSize, resolution))
+                using (GobanComposer goban = new GobanComposer(GobanColor.BlackTheme, game.BoardSize, resolution))
                 {
                     game.ToStart();
                     var count = game.EnumerateMoves().Count();
@@ -84,15 +84,36 @@ namespace IGOEnchi.Videocast
                     foreach (var move in game.EnumerateMoves())
                     {
                         goban.ClearGoban();
-                        var whiteMap = new InfluenceMap(game.board.White);
-                        var blackMap = new InfluenceMap(game.board.Black);
+
+                        /////////////////////////////////////////////////////////////////////
+                        var solids = game.board.BlackAndWhite;
+                        
+                        //var whiteMap = new InfluenceMapBuilder(game.board.White).GetMap();
+                        //var blackMap = new InfluenceMapBuilder(game.board.Black).GetMap();
+
+                        var whiteMap = new RayTracer(game.board.White, solids).GetMap();
+                        var blackMap = new RayTracer(game.board.Black, solids).GetMap();
 
                         foreach (var coord in game.board.AllCoords)
                         {
-                            var white = whiteMap.GetByte(coord.X, coord.Y);
-                            var black = blackMap.GetByte(coord.X, coord.Y);
+                            var white = whiteMap.IntensityWithMinMax(coord);
+                            var black = blackMap.IntensityWithMinMax(coord);
                             goban.Influence(coord.X, coord.Y, black, white);
                         }
+                        /////////////////////////////////////////////////////////////////////
+                        if (move != null) { 
+                            var single = new BitPlane(game.BoardSize);
+                            single.Add(move.Stone);
+                            var ImpactMap= new RayTracer(single, solids).GetMap();
+                        
+                            foreach (var coord in game.board.AllCoords)
+                            {
+                                var impact = ImpactMap.IntensityWithMinMax(coord);
+                                goban.Impact(coord.X, coord.Y, impact);
+                            }
+                        }
+
+                        /////////////////////////////////////////////////////////////////////
 
                         goban.SetBlack();
                         foreach (var coord in game.board.White.Unabled)

@@ -20,7 +20,7 @@ namespace IGOEnchi.GoGameLogic
 
         public BitPlane White { get; private set; }
 
-        public BitPlane BlackAndWhite => White.Or(Black);
+        public BitPlane BlackAndWhite => White.Copy().Or(Black);
 
         public IEnumerable<ICoords> AllCoords
         {

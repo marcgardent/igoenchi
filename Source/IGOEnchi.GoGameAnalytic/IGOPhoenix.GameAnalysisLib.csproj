@@ -47,6 +47,7 @@
     <Compile Include="Maps\Influence\RayTracing\Ray.cs" />
     <Compile Include="Maps\Influence\RayTracing\RayTracer.cs" />
     <Compile Include="Maps\Map.cs" />
+    <Compile Include="Maps\ThresholdMapper.cs" />
     <Compile Include="Models\ChainStat.cs" />
     <Compile Include="Models\GoDynamic.cs" />
     <Compile Include="Models\GoPlayerStat.cs" />

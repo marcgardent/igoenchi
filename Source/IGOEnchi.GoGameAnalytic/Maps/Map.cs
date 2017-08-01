@@ -12,6 +12,7 @@ namespace IGOPhoenix.GoGameAnalytic.Maps
         Map GetMap();
     }
 
+
     public class Map
     {
         public readonly int Width;
@@ -41,10 +42,9 @@ namespace IGOPhoenix.GoGameAnalytic.Maps
         public byte Intensity(ICoords coords)
         {
             var raw = this[coords];
-            return (byte)Math.Min(255, raw * 255);
+            return (byte)Math.Min(255, raw/4d * 255);
         }
-
-
+        
         public double this[ICoords coords]
         {
             get { return this[coords.X, coords.Y]; }

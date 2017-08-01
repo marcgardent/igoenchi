@@ -20,7 +20,7 @@ namespace IGOEnchi.Videocast.Rendering
     internal interface IGobanRenderAsImage : IGobanRender, IDisposable
     {
 
-        void Influence(byte x, byte y, byte black, byte white);
+        void Influence(byte x, byte y, double black, double white);
 
         void ReadPng(Stream outstream);
     }

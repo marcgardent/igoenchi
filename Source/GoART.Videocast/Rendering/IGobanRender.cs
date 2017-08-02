@@ -7,21 +7,25 @@ namespace IGOEnchi.Videocast.Rendering
     internal interface IGobanRender
     {
         void ClearGoban();
+        void Grid();
 
         void SetBlack();
         void SetWhite();
-        
+
+        void Hatch(int x, int y, Color color);
         void Outline(int x, int y, Color color);
         void Stone(int x, int y);
         void Focus(int x, int y);
-        
+
+        void BorderLeft(int x, int y, Color color);
+        void BorderTop(int x, int y, Color color);
+        void BorderBottom(int x, int y, Color color);
+        void BorderRight(int x, int y, Color color);
     }
 
-    internal interface IGobanRenderAsImage : IGobanRender, IDisposable
+    internal interface IGobanRenderAsImage : IDisposable
     {
-
-        void Influence(int x, int y, double black, double white);
-
+         
         void ReadPng(Stream outstream);
     }
 

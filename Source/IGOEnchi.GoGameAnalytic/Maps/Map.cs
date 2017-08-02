@@ -84,6 +84,16 @@ namespace IGOPhoenix.GoGameAnalytic.Maps
                 }
             }
         }
-        
+
+        public static Map operator -(Map a, Map b)
+        {
+            var ret = new Map(a.Width, b.Height);
+            foreach (var allCoord in a.AllCoords)
+            {
+                ret[allCoord] = a[allCoord] - b[allCoord];
+            }
+
+            return ret;
+        }
     }
 }

@@ -3,9 +3,9 @@ using IGOEnchi.GoGameLogic;
 
 namespace IGOPhoenix.GoGameAnalytic.BitPlaneParsing
 {
-    public class Territory
+    public class TerritoryParser
     {
-        public enum Orientation
+        public enum BorderState
         {
             left,
             right,
@@ -13,41 +13,53 @@ namespace IGOPhoenix.GoGameAnalytic.BitPlaneParsing
             bottom
         }
 
-        public class Limit : ICoords
+        public class TerritoryCoords : ICoords
         {
-            public IEnumerable<Orientation> Orientations { get; }
+            public IEnumerable<BorderState> Orientations { get; }
             public int X { get; }
             public int Y { get; }
             
-            public Limit(byte x, byte y)
+            public TerritoryCoords(byte x, byte y)
             {
                 X = x;
                 Y = y;
             }
 
-            public Limit(ICoords coords, IEnumerable<Orientation> orientations)
+            public TerritoryCoords(ICoords coords, IEnumerable<BorderState> orientations)
             {
                 Orientations = orientations;
                 X = coords.X;
                 Y = coords.Y;
-
             }
         }
-
-        public Territory(BitPlane bitPlane)
+        
+        public List<TerritoryCoords> Parse(BitPlane bitPlane)
         {
-
-            List<Limit> ret  = new List<Limit>();
+            List<TerritoryCoords> ret  = new List<TerritoryCoords>();
             foreach (var coord in bitPlane.Unabled )
             {
-                var limits = new List<Orientation>();
+                var limits = new List<BorderState>();
+                
+                var left = new Coords(coord.X - 1, coord.Y);
+                var right = new Coords(coord.X + 1, coord.Y);
+                var top = new Coords(coord.X , coord.Y-1);
+                var bottom = new Coords(coord.X , coord.Y+1);
                 /*
-                if (coord.X==0 || bitPlane[coord.X-1,coord.Y]) limits.Add(Orientation.left); 
-                if (coord.X > bitPlane.Height || bitPlane[coord.X+1,coord.Y]) limits.Add(Orientation.right); 
-                if (coord.Y > bitPlane.Height || bitPlane[coord.X,coord.Y+1]) limits.Add(Orientation.left); 
-                if (coord.Y==0 || bitPlane[coord.X,coord.Y-1]) limits.Add(Orientation.left); 
+                if (!bitPlane.InOfRange(left) || !bitPlane[left]) limits.Add(BorderState.left); 
+                if (!bitPlane.InOfRange(right) || !bitPlane[right]) limits.Add(BorderState.right); 
+                if (!bitPlane.InOfRange(top) || !bitPlane[top]) limits.Add(BorderState.top); 
+                if (!bitPlane.InOfRange(bottom) || !bitPlane[bottom]) limits.Add(BorderState.bottom);
                 */
+
+                if (bitPlane.InOfRange(left) &&!bitPlane[left]) limits.Add(BorderState.left);
+                if (bitPlane.InOfRange(right) && !bitPlane[right]) limits.Add(BorderState.right);
+                if (bitPlane.InOfRange(top) && !bitPlane[top]) limits.Add(BorderState.top);
+                if (bitPlane.InOfRange(bottom) && !bitPlane[bottom]) limits.Add(BorderState.bottom);
+
+                ret.Add(new TerritoryCoords(coord, limits));
             }
+
+            return ret;
         }
     }
 }

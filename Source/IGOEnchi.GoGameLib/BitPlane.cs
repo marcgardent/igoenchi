@@ -57,7 +57,7 @@ namespace IGOEnchi.GoGameLogic
 
         public bool InOfRange(ICoords coords)
         {
-            return (coords.X < Width && coords.Y < Height);
+            return (coords.X < Width && coords.Y < Height) && (coords.X >= 0 && coords.Y >= 0);
         }
         
         public BitPlane And(BitPlane bitPlane)

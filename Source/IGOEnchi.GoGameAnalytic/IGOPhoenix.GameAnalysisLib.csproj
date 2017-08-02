@@ -42,10 +42,12 @@
   <ItemGroup>
     <Compile Include="Analyser.cs" />
     <Compile Include="BitPlaneParsing\AnalyticHelper.cs" />
+    <Compile Include="InfluenceAnalyser.cs" />
     <Compile Include="Maps\Influence\Basic\InfluenceMap.cs" />
     <Compile Include="BitPlaneParsing\LibertiesParser.cs" />
     <Compile Include="Maps\Influence\RayTracing\Ray.cs" />
     <Compile Include="Maps\Influence\RayTracing\RayTracer.cs" />
+    <Compile Include="Maps\LayersMap.cs" />
     <Compile Include="Maps\Map.cs" />
     <Compile Include="BitPlaneParsing\Territory.cs" />
     <Compile Include="Maps\ThresholdMapper.cs" />

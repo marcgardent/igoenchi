@@ -24,13 +24,15 @@ namespace IGOPhoenix.GoGameAnalytic.Maps.Influence.RayTracing
 
             foreach (var light in lights.Unabled)
             {
+                ret[light] = 1000;
+
                 foreach (var dest in solids.AllCoords)
                 {
                     var ray = new Ray(light, dest);
                     var last = ray.Points.TakeWhile(x => !(x.All().Any(c=>solids[c]))).LastOrDefault();
                     if (last != null && CoordsUtils.Equals(dest, last))
                     {
-                        ret[dest.X, dest.Y] += 1.0 / (Math.Abs(light.X - dest.X) + Math.Abs(light.Y - dest.Y));
+                        ret[dest] += 1.0 / (Math.Abs(light.X - dest.X) + Math.Abs(light.Y - dest.Y));
                     }
                 }
             }

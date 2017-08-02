@@ -46,7 +46,7 @@ namespace IGOEnchi.Videocast.Rendering.NativeImpl.Models
             marginLeftPx = gridStepPx;
         }
 
-        public RectangleF GobanRect => new RectangleF(marginLeftPx, marginTopPx, gridsize * gridStepPx, gridsize * gridStepPx);
+        public RectangleF GobanRect => new RectangleF(marginLeftPx - stoneSizePx / 2, marginTopPx - stoneSizePx / 2, gridsize * gridStepPx+stoneSizePx, gridsize * gridStepPx + stoneSizePx);
 
         public IEnumerable<RectangleF> Lines()
         {
@@ -74,14 +74,44 @@ namespace IGOEnchi.Videocast.Rendering.NativeImpl.Models
             return new PointF(marginLeftPx + x*gridStepPx, marginTopPx + y*gridStepPx);
         }
 
-        public RectangleF IntersectionBound(int x, int y)
+        public PointF LeftTopCorner(int x, int y)
+        {
+            var intesection = Intersection(x, y);
+            return new PointF(intesection.X - gridStepPx / 2, intesection.Y - gridStepPx / 2);
+        }
+
+        public PointF RightBottomCorner(int x, int y)
+        {
+            var intesection = Intersection(x, y);
+            return new PointF(intesection.X - gridStepPx/ 2+ gridStepPx, intesection.Y - gridStepPx/ 2+ gridStepPx);
+        }
+
+        public PointF LeftBottomCorner(int x, int y)
+        {
+            var intesection = Intersection(x, y);
+            return new PointF(intesection.X - gridStepPx / 2, intesection.Y - gridStepPx / 2 + gridStepPx);
+        }
+
+        public PointF RightTopCorner(int x, int y)
+        {
+            var intesection = Intersection(x, y);
+            return new PointF(intesection.X - gridStepPx / 2 + gridStepPx, intesection.Y - gridStepPx / 2 );
+        }
+        public RectangleF AeraBound(int x, int y)
         {
             var intesection = Intersection(x, y);
 
-            return new RectangleF(intesection.X - stoneSizePx/2, intesection.Y - stoneSizePx/2, stoneSizePx, stoneSizePx);
+            return new RectangleF(intesection.X - gridStepPx / 2, intesection.Y - gridStepPx / 2, gridStepPx, gridStepPx);
         }
 
-        public RectangleF IntersectionSemiBound(int x, int y)
+        public RectangleF StoneBound(int x, int y)
+        {
+            var intesection = Intersection(x, y);
+
+            return new RectangleF(intesection.X - stoneSizePx / 2, intesection.Y - stoneSizePx/2, stoneSizePx, stoneSizePx);
+        }
+
+        public RectangleF FocusBound(int x, int y)
         {
             var intesection = Intersection(x, y);
             return new RectangleF(intesection.X - stoneSizePx/4, intesection.Y - stoneSizePx/4, stoneSizePx/2,

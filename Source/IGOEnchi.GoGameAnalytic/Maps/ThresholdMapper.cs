@@ -1,9 +1,64 @@
 using System;
 using System.Collections.Generic;
+using System.Xml;
+using IGOEnchi.GoGameLogic;
 
 namespace IGOPhoenix.GoGameAnalytic.Maps
 {
-    public class ThresholdMapper<TOut>
+    public class Territories
+    {
+        public enum TerritoryState 
+        {
+            Black,
+            White,
+            Constest,
+        }
+
+
+
+        public Territories(Map influenceWhiteMap, Map influenceBlackMap)
+        {
+            
+        }
+    }
+
+    public class LayersMap<TGroup>
+    {
+        private readonly Map map;
+        private readonly IMapper<TGroup> mapping;
+         
+        public LayersMap(Map map, IMapper<TGroup> mapping)
+        {
+            this.map = map;
+            this.mapping = mapping;
+        }
+
+        public Dictionary<TGroup,BitPlane> Layers(TGroup group)
+        {
+            var ret = new Dictionary<TGroup, BitPlane>();
+
+            foreach (var coords in map.AllCoords)
+            {
+                var grp = this.mapping.Map(map[coords]);
+
+                if (!ret.ContainsKey(grp))
+                {
+                    ret[grp] = new BitPlane((byte)map.Width, (byte)map.Height);
+                }
+                ret[grp][coords] = true;
+            }
+            
+            return ret;
+        }
+        
+    }
+
+    public interface IMapper<TOut>
+    {
+        TOut Map(double input);
+    }
+
+    public class ThresholdMapper<TOut> : IMapper<TOut>
     {
         private readonly TOut defautValue;
         private readonly Func<double, double, bool> compareValueAndThreshold;

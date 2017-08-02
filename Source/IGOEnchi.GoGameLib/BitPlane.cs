@@ -48,7 +48,7 @@ namespace IGOEnchi.GoGameLogic
             set { this[coords.X, coords.Y] = value; }
         }
 
-        public bool this[byte xIndex, byte yIndex]
+        public bool this[int xIndex, byte yIndex]
         {
             get { return bitArray.Get(yIndex * Width + xIndex); }
 

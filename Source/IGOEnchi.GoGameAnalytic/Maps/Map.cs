@@ -84,7 +84,6 @@ namespace IGOPhoenix.GoGameAnalytic.Maps
                 }
             }
         }
-
         
     }
 }

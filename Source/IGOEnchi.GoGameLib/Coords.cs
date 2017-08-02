@@ -2,10 +2,10 @@ namespace IGOEnchi.GoGameLogic {
     public class Coords : ICoords
     {
         
-        public byte X { get; private set; }
-        public byte Y { get; private set; }
+        public int X { get; private set; }
+        public int Y { get; private set; }
 
-        public Coords(byte x, byte y)
+        public Coords(int x, int y)
         {
             X = x;
             Y = y;

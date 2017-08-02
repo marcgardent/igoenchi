@@ -4,9 +4,9 @@ namespace IGOEnchi.GoGameLogic
 {
     public class BoardMarkup
     {
-        private readonly byte boardSize;
+        private readonly int boardSize;
 
-        public BoardMarkup(byte boardSize)
+        public BoardMarkup(int boardSize)
         {
             Labels = new List<TextLabel>();
             Marks = new List<Mark>();

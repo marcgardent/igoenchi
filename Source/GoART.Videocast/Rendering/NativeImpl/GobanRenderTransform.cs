@@ -32,11 +32,11 @@ namespace IGOEnchi.Videocast.Rendering.NativeImpl
 
         public void SetWhite() => goban.SetWhite();
 
-        public void Outline(byte x, byte y,Color color) => Transform(() => goban.Outline(x, y, color));
+        public void Outline(int x, int y,Color color) => Transform(() => goban.Outline(x, y, color));
 
-        public void Stone(byte x, byte y) => Transform(() => goban.Stone(x, y));
+        public void Stone(int x, int y) => Transform(() => goban.Stone(x, y));
 
-        public void Focus(byte x, byte y) => Transform(() => goban.Focus(x, y));
+        public void Focus(int x, int y) => Transform(() => goban.Focus(x, y));
          
     }
 }

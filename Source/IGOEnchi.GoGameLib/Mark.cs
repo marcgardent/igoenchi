@@ -2,11 +2,11 @@ namespace IGOEnchi.GoGameLogic
 {
     public struct Mark
     {
-        public readonly byte X;
-        public readonly byte Y;
+        public readonly int X;
+        public readonly int Y;
         public readonly MarkType MarkType;
 
-        public Mark(byte x, byte y, MarkType markType)
+        public Mark(int x, int y, MarkType markType)
         {
             X = x;
             Y = y;

@@ -182,9 +182,9 @@ namespace IGOEnchi.GoGameSgf
         private static string DecompilePlaneValue(BitPlane plane)
         {
             var result = new StringBuilder();
-            for (byte i = 0; i < plane.Width; i++)
+            for (int i = 0; i < plane.Width; i++)
             {
-                for (byte j = 0; j < plane.Height; j++)
+                for (int j = 0; j < plane.Height; j++)
                 {
                     if (plane[i, j])
                     {
@@ -198,7 +198,7 @@ namespace IGOEnchi.GoGameSgf
             return result.ToString();
         }
 
-        private static string DecompilePointValue(byte x, byte y)
+        private static string DecompilePointValue(int x, int y)
         {
             return Convert.ToChar(x + 'a') +
                    Convert.ToChar(y + 'a').ToString();

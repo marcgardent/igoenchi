@@ -11,16 +11,16 @@ namespace IGOEnchi.Videocast.Rendering
         void SetBlack();
         void SetWhite();
         
-        void Outline(byte x, byte y, Color color);
-        void Stone(byte x, byte y);
-        void Focus(byte x, byte y);
+        void Outline(int x, int y, Color color);
+        void Stone(int x, int y);
+        void Focus(int x, int y);
         
     }
 
     internal interface IGobanRenderAsImage : IGobanRender, IDisposable
     {
 
-        void Influence(byte x, byte y, double black, double white);
+        void Influence(int x, int y, double black, double white);
 
         void ReadPng(Stream outstream);
     }

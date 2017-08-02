@@ -46,7 +46,7 @@ namespace IGOEnchi.GoGameLogic
             }
         }
 
-        public byte BoardSize
+        public int BoardSize
         {
             get
             {

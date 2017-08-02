@@ -11,29 +11,29 @@ namespace IGOEnchi.GoGameLogic
         private BitArray bitArray;
 
 
-        public BitPlane(byte width, byte height)
+        public BitPlane(int width, int height)
         {
             Width = width;
             Height = height;
             bitArray = new BitArray(width*height);
         }
 
-        public BitPlane(byte size) : this(size, size)
+        public BitPlane(int size) : this(size, size)
         {
 
         }
         
-        public byte Width { get; private set; }
+        public int Width { get; private set; }
 
-        public byte Height { get; private set; }
+        public int Height { get; private set; }
 
         public IEnumerable<ICoords> AllCoords
         {
             get
             {
-                for (byte x = 0; x < this.Width; x++)
+                for (int x = 0; x < this.Width; x++)
                 {
-                    for (byte y = 0; y < this.Height; y++)
+                    for (int y = 0; y < this.Height; y++)
                     {
                         yield return new Coords(x, y);
                     }
@@ -48,7 +48,7 @@ namespace IGOEnchi.GoGameLogic
             set { this[coords.X, coords.Y] = value; }
         }
 
-        public bool this[int xIndex, byte yIndex]
+        public bool this[int xIndex, int yIndex]
         {
             get { return bitArray.Get(yIndex * Width + xIndex); }
 
@@ -104,9 +104,9 @@ namespace IGOEnchi.GoGameLogic
         /// <returns></returns>
         public bool Empty()
         {
-            for (byte i = 0; i < Width; i++)
+            for (int i = 0; i < Width; i++)
             {
-                for (byte j = 0; j < Height; j++)
+                for (int j = 0; j < Height; j++)
                 {
                     if (this[i, j])
                     {
@@ -128,9 +128,9 @@ namespace IGOEnchi.GoGameLogic
         {
             get
             {
-                for (byte x = 0; x < Width; x++)
+                for (int x = 0; x < Width; x++)
                 {
-                    for (byte y = 0; y < Height; y++)
+                    for (int y = 0; y < Height; y++)
                     {
                         if (this[x, y]) yield return new Coords(x, y);
                     }

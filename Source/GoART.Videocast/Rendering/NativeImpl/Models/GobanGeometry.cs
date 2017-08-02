@@ -15,7 +15,7 @@ namespace IGOEnchi.Videocast.Rendering.NativeImpl.Models
         public static GobanGeometry UltraHighResolution = new GobanGeometry(2160, 19);
 
         public readonly float focusStrokePx;
-        private readonly byte gridsize;
+        private readonly int gridsize;
         private readonly float gridStepPx;
         private readonly float gridWidthPx;
         
@@ -31,7 +31,7 @@ namespace IGOEnchi.Videocast.Rendering.NativeImpl.Models
         /// </summary>
         /// <param name="resolutionPx">goban size (width & height)</param>
         /// <param name="gridsize">grid of goban (ex 19x19)</param>
-        public GobanGeometry(int resolutionPx, byte gridsize)
+        public GobanGeometry(int resolutionPx, int gridsize)
         {
             this.gridsize = gridsize;
             this.widthPx = resolutionPx;

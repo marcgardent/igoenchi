@@ -16,8 +16,8 @@ namespace IGOPhoenix.GoGameAnalytic.BitPlaneParsing
         public class Limit : ICoords
         {
             public IEnumerable<Orientation> Orientations { get; }
-            public byte X { get; }
-            public byte Y { get; }
+            public int X { get; }
+            public int Y { get; }
             
             public Limit(byte x, byte y)
             {

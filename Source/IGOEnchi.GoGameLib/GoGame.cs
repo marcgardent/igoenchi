@@ -9,7 +9,7 @@ namespace IGOEnchi.GoGameLogic
         public GoNode currentNode;
         private bool updateBoard = true;
 
-        public GoGame(byte boardSize)
+        public GoGame(int boardSize)
         {
             currentNode = new GoRootNode(boardSize);
             MoveNumber = 0;
@@ -23,7 +23,7 @@ namespace IGOEnchi.GoGameLogic
 
         public int MoveNumber { get; private set; }
 
-        public byte BoardSize
+        public int BoardSize
         {
             get { return board.Size; }
         }
@@ -245,7 +245,7 @@ namespace IGOEnchi.GoGameLogic
             }
         }
 
-        public void SetHandicap(byte count)
+        public void SetHandicap(int count)
         {
             if (currentNode is GoRootNode)
             {

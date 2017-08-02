@@ -26,7 +26,7 @@ namespace IGOPhoenix.Analysis.SpeechOfStones.Speechs
 
     public class SpeechAnalyser
     {
-        const byte MinimalDistanceToinvade = 8;
+        const int MinimalDistanceToinvade = 8;
 
         public string Parse(Stone stone, IEnumerable<RankModel> ranks)
         {

@@ -27,7 +27,7 @@ namespace IGOEnchi.Videocast.Rendering.NativeImpl
         /// <param name="colors"></param>
         /// <param name="gridSize"></param>
         /// <param name="resolution">FullHD=120, 4K=240</param>
-        public GobanComposer(GobanColor colors, byte gridSize, int resolution=120)
+        public GobanComposer(GobanColor colors, int gridSize, int resolution=120)
         {
             var width = 16* resolution;
             var height = 9* resolution;
@@ -81,22 +81,22 @@ namespace IGOEnchi.Videocast.Rendering.NativeImpl
             foreach (var goban in gobans) goban.SetWhite();
         }
 
-        public void Outline(byte x, byte y, Color color)
+        public void Outline(int x, int y, Color color)
         {
             foreach (var goban in outlined) goban.Outline(x, y, color);
         }
 
-        public void Stone(byte x, byte y)
+        public void Stone(int x, int y)
         {
             foreach (var goban in gobans) goban.Stone(x, y);
         }
 
-        public void Focus(byte x, byte y)
+        public void Focus(int x, int y)
         {
             foreach (var goban in gobans) goban.Focus(x, y);
         }
 
-        public void Influence(byte x, byte y, double blackInf, double whiteInf)
+        public void Influence(int x, int y, double blackInf, double whiteInf)
         {
             var white = influenceScale.Map(whiteInf);
             var black = influenceScale.Map(blackInf);
@@ -117,7 +117,7 @@ namespace IGOEnchi.Videocast.Rendering.NativeImpl
             }
         }
 
-        public void Impact(byte x, byte y, double intensity)
+        public void Impact(int x, int y, double intensity)
         {
             var mapped = influenceScale.Map(intensity);
             seconde.Outline(x, y, Color.FromArgb(mapped, mapped, mapped));

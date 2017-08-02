@@ -43,7 +43,7 @@ namespace IGOEnchi.GoGameSgf
 
         public static GoGame Compile(SGFTree gameTree, TransformType transform)
         {
-            byte size = 19;
+            int size = 19;
             if (gameTree.ChildNodes.Count == 0)
             {
                 throw new FormatException("No game data");
@@ -58,7 +58,7 @@ namespace IGOEnchi.GoGameSgf
             {
                 if (property.Name == "SZ")
                 {
-                    size = Convert.ToByte(property.Value);
+                    size = Convert.ToInt16(property.Value);
                     if (!(size >= 2 && size <= 19))
                     {
                         throw new FormatException("Board size should be between 2 and 19"); 
@@ -94,7 +94,7 @@ namespace IGOEnchi.GoGameSgf
                 {
                     try
                     {
-                        game.Info.Handicap = Convert.ToByte(property.Value);
+                        game.Info.Handicap = Convert.ToInt16(property.Value);
                     }
                     catch (Exception)
                     {
@@ -110,7 +110,7 @@ namespace IGOEnchi.GoGameSgf
             return game;
         }
 
-        private static void SetTransformer(byte boardSize, TransformType type)
+        private static void SetTransformer(int boardSize, TransformType type)
         {
             switch (type)
             {
@@ -118,53 +118,53 @@ namespace IGOEnchi.GoGameSgf
                     stoneTransformer =
                         delegate(Stone stone)
                         {
-                            stone.X = (byte) (stone.X ^ stone.Y);
-                            stone.Y = (byte) (stone.X ^ stone.Y);
-                            stone.X = (byte) (stone.X ^ stone.Y);
+                            stone.X =  (stone.X ^ stone.Y);
+                            stone.Y =  (stone.X ^ stone.Y);
+                            stone.X =  (stone.X ^ stone.Y);
                         };
                     break;
                 case TransformType.CodiagonalFlip:
                     stoneTransformer =
                         delegate(Stone stone)
                         {
-                            stone.X = (byte) (stone.X ^ stone.Y);
-                            stone.Y = (byte) (stone.X ^ stone.Y);
-                            stone.X = (byte) (boardSize - (stone.X ^ stone.Y) - 1);
-                            stone.Y = (byte) (boardSize - stone.Y - 1);
+                            stone.X =  (stone.X ^ stone.Y);
+                            stone.Y =  (stone.X ^ stone.Y);
+                            stone.X =  (boardSize - (stone.X ^ stone.Y) - 1);
+                            stone.Y =  (boardSize - stone.Y - 1);
                         };
                     break;
                 case TransformType.HorizontalFlip:
                     stoneTransformer =
-                        delegate(Stone stone) { stone.X = (byte) (boardSize - stone.X - 1); };
+                        delegate(Stone stone) { stone.X = (boardSize - stone.X - 1); };
                     break;
                 case TransformType.VerticalFlip:
                     stoneTransformer =
-                        delegate(Stone stone) { stone.Y = (byte) (boardSize - stone.Y - 1); };
+                        delegate(Stone stone) { stone.Y = (boardSize - stone.Y - 1); };
                     break;
                 case TransformType.Rotate90:
                     stoneTransformer =
                         delegate(Stone stone)
                         {
-                            stone.X = (byte) (stone.X ^ stone.Y);
-                            stone.Y = (byte) (stone.X ^ stone.Y);
-                            stone.X = (byte) (boardSize - (stone.X ^ stone.Y) - 1);
+                            stone.X =  (stone.X ^ stone.Y);
+                            stone.Y =  (stone.X ^ stone.Y);
+                            stone.X = (boardSize - (stone.X ^ stone.Y) - 1);
                         };
                     break;
                 case TransformType.Rotate180:
                     stoneTransformer =
                         delegate(Stone stone)
                         {
-                            stone.X = (byte) (boardSize - stone.X - 1);
-                            stone.Y = (byte) (boardSize - stone.Y - 1);
+                            stone.X = (boardSize - stone.X - 1);
+                            stone.Y = (boardSize - stone.Y - 1);
                         };
                     break;
                 case TransformType.Rotate270:
                     stoneTransformer =
                         delegate(Stone stone)
                         {
-                            stone.Y = (byte) (stone.X ^ stone.Y);
-                            stone.X = (byte) (stone.X ^ stone.Y);
-                            stone.Y = (byte) (boardSize - (stone.X ^ stone.Y) - 1);
+                            stone.Y = (stone.X ^ stone.Y);
+                            stone.X = (stone.X ^ stone.Y);
+                            stone.Y = (boardSize - (stone.X ^ stone.Y) - 1);
                         };
                     break;
                 case TransformType.Random:
@@ -332,8 +332,8 @@ namespace IGOEnchi.GoGameSgf
                 source.Trim();
                 if (source.Length >= 2)
                 {
-                    stone.X = Convert.ToByte(source[0] - 'a');
-                    stone.Y = Convert.ToByte(source[1] - 'a');
+                    stone.X = Convert.ToInt16(source[0] - 'a');
+                    stone.Y = Convert.ToInt16(source[1] - 'a');
                     if (stoneTransformer != null)
                     {
                         stoneTransformer(stone);

@@ -174,9 +174,9 @@ namespace IGOEnchi.GoGameSgf
         private void DecompilePlaneValue(string key, BitPlane plane)
         {
             
-            for (byte i = 0; i < plane.Width; i++)
+            for (int i = 0; i < plane.Width; i++)
             {
-                for (byte j = 0; j < plane.Height; j++)
+                for (int j = 0; j < plane.Height; j++)
                 {
                     if (plane[i, j])
                     {
@@ -192,7 +192,7 @@ namespace IGOEnchi.GoGameSgf
             b.p(stone.IsBlack ? "B" : "W", coords);
         }
 
-        private string DecompilePointValue(byte x, byte y)
+        private string DecompilePointValue(int x, int y)
         {
             if (x < goNode.BoardSize && y < goNode.BoardSize)
             {

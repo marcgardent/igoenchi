@@ -10,7 +10,7 @@ namespace IGOEnchi.GoGameLogic
 
         }
 
-        public Board(byte boardSize)
+        public Board(int boardSize)
         {
             Black = new BitPlane(boardSize);
             White = new BitPlane(boardSize);
@@ -26,9 +26,9 @@ namespace IGOEnchi.GoGameLogic
         {
             get
             {
-                for (byte x = 0; x < this.Size; x++)
+                for (int x = 0; x < this.Size; x++)
                 {
-                    for (byte y = 0; y < this.Size; y++)
+                    for (int y = 0; y < this.Size; y++)
                     {
                         yield return new Coords(x,y);
                     }
@@ -36,7 +36,7 @@ namespace IGOEnchi.GoGameLogic
             }
         }
 
-        public byte Size => Black.Width;
+        public int Size => Black.Width;
 
         public Board Copy()
         {
@@ -46,7 +46,7 @@ namespace IGOEnchi.GoGameLogic
             return result;
         }
 
-        public bool Place(byte x, byte y, bool black)
+        public bool Place(int x, int y, bool black)
         {
             if (StoneInBounds(x, y))
             {
@@ -81,7 +81,7 @@ namespace IGOEnchi.GoGameLogic
             return Place(stone, true);
         }
 
-        public bool Remove(byte x, byte y)
+        public bool Remove(int x, int y)
         {
             Black[x, y] = false;
             White[x, y] = false;
@@ -95,18 +95,18 @@ namespace IGOEnchi.GoGameLogic
 
 
         
-        public bool HasBlack(byte x, byte y)
+        public bool HasBlack(int x, int y)
         {
             return StoneInBounds(x, y) && Black[x, y];
         }
 
-        public bool HasWhite(byte x, byte y)
+        public bool HasWhite(int x, int y)
         {
             return StoneInBounds(x, y) && White[x, y];
         }
 
         [Obsolete]
-        public bool HasStone(byte x, byte y, bool black)
+        public bool HasStone(int x, int y, bool black)
         {
             if (StoneInBounds(x, y))
             {
@@ -136,7 +136,7 @@ namespace IGOEnchi.GoGameLogic
         /// <summary>
         /// Is coords on the board
         /// </summary>
-        public bool StoneInBounds(byte x, byte y)
+        public bool StoneInBounds(int x, int y)
         {
             return (x < Black.Width) && (y < Black.Height);
         }

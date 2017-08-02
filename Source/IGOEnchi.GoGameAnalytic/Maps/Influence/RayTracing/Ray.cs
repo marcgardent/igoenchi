@@ -9,8 +9,8 @@ namespace IGOPhoenix.GoGameAnalytic.Maps.Influence.RayTracing
 
     public class RayCoords : ICoords    
     {
-        public byte X { get; }
-        public byte Y { get; }
+        public int X { get; }
+        public int Y { get; }
 
         public readonly List<ICoords> Cousins = new List<ICoords>();
 

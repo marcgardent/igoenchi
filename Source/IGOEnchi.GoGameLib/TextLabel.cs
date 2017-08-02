@@ -2,11 +2,11 @@ namespace IGOEnchi.GoGameLogic
 {
     public struct TextLabel
     {
-        public readonly byte X;
-        public readonly byte Y;
+        public readonly int X;
+        public readonly int Y;
         public readonly string Text;
 
-        public TextLabel(byte x, byte y, string text)
+        public TextLabel(int x, int y, string text)
         {
             X = x;
             Y = y;

@@ -4,8 +4,8 @@ namespace IGOEnchi.GoGameLogic
 {
     public interface ICoords
     {
-        byte X { get;  }
-        byte Y { get;  }
+        int X { get;  }
+        int Y { get;  }
     }
     
 

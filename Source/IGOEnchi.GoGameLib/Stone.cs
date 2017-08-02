@@ -4,9 +4,9 @@ namespace IGOEnchi.GoGameLogic
 {
     public class Stone : ICoords
     {
-        public byte X { set; get; }
+        public int X { set; get; }
 
-        public byte Y { set; get; }
+        public int Y { set; get; }
 
         public bool IsBlack { set; get; }
         public bool IsWhite => !IsBlack;
@@ -18,7 +18,7 @@ namespace IGOEnchi.GoGameLogic
             IsBlack = true;
         }
 
-        public Stone(byte x, byte y, bool isBlack)
+        public Stone(int x, int y, bool isBlack)
         {
             X = x;
             Y = y;
@@ -51,11 +51,11 @@ namespace IGOEnchi.GoGameLogic
             var stone = new Stone(this);
             if (Y > 0)
             {
-                stone.Y = Convert.ToByte(stone.Y - 1);
+                stone.Y = stone.Y - 1;
             }
             else
             {
-                stone.Y = byte.MaxValue;
+                stone.Y = int.MaxValue;
             }
 
             return stone;
@@ -66,11 +66,11 @@ namespace IGOEnchi.GoGameLogic
             var stone = new Stone(this);
             if (X > 0)
             {
-                stone.X = Convert.ToByte(stone.X - 1);
+                stone.X = stone.X - 1;
             }
             else
             {
-                stone.X = byte.MaxValue;
+                stone.X = int.MaxValue;
             }
 
             return stone;
@@ -79,7 +79,7 @@ namespace IGOEnchi.GoGameLogic
         public Stone BottomStone()
         {
             var stone = new Stone(this);
-            stone.Y = Convert.ToByte(stone.Y + 1);
+            stone.Y = stone.Y + 1;
 
             return stone;
         }
@@ -87,7 +87,7 @@ namespace IGOEnchi.GoGameLogic
         public Stone RightStone()
         {
             var stone = new Stone(this);
-            stone.X = Convert.ToByte(stone.X + 1);
+            stone.X = stone.X + 1;
 
             return stone;
         }

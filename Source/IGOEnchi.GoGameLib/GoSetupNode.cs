@@ -13,7 +13,7 @@ namespace IGOEnchi.GoGameLogic
             BlackToPlay = black;
         }
 
-        public void SetHandicap(byte count)
+        public void SetHandicap(int count)
         {
             switch (board.Size)
             {
@@ -29,7 +29,7 @@ namespace IGOEnchi.GoGameLogic
             }
         }
 
-        public void SetHandicapFor19(byte count)
+        public void SetHandicapFor19(int count)
         {
             switch (count)
             {
@@ -70,7 +70,7 @@ namespace IGOEnchi.GoGameLogic
             }
         }
 
-        public void SetHandicapFor13(byte count)
+        public void SetHandicapFor13(int count)
         {
             switch (count)
             {
@@ -111,7 +111,7 @@ namespace IGOEnchi.GoGameLogic
             }
         }
 
-        public void SetHandicapFor9(byte count)
+        public void SetHandicapFor9(int count)
         {
             switch (count)
             {

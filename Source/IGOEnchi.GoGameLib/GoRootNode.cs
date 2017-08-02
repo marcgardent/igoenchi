@@ -2,7 +2,7 @@ namespace IGOEnchi.GoGameLogic
 {
     public class GoRootNode : GoSetupNode
     {
-        public GoRootNode(byte boardSize) : base(null)
+        public GoRootNode(int boardSize) : base(null)
         {
             board = new Board(boardSize);
         }

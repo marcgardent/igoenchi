@@ -67,18 +67,18 @@ namespace IGOEnchi.Videocast.Rendering.NativeImpl
             isBlack = false;
         }
 
-        public void Outline(byte x, byte y, Color color)
+        public void Outline(int x, int y, Color color)
         {
             context.FillRectangle(new SolidBrush(color), geometry.IntersectionBound(x, y));
         }
 
-        public void Stone(byte x, byte y)
+        public void Stone(int x, int y)
         {
             context.FillEllipse(StoneFill, geometry.IntersectionBound(x, y));
             context.DrawEllipse(StoneStroke, geometry.IntersectionBound(x, y));
         }
 
-        public void Focus(byte x, byte y)
+        public void Focus(int x, int y)
         {
             var rect = geometry.IntersectionSemiBound(x, y);
 

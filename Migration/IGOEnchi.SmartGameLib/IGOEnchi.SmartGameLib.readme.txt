@@ -1,7 +1,0 @@
-﻿no more, no less :
-Reusable lib to read and write "Smart Game Format" File.
-
-
-
-	
-

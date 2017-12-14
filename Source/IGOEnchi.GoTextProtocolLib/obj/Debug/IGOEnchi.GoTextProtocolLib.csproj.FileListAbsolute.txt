@@ -3,3 +3,9 @@ C:\data\mgardent\RD\IGOEnchi\source\IGOEnchi.GoTextProtocolLib\bin\Debug\IGOEnch
 C:\data\mgardent\RD\IGOEnchi\source\IGOEnchi.GoTextProtocolLib\bin\Debug\IGOEnchi.GoTextProtocolLib.pdb
 C:\data\mgardent\RD\IGOEnchi\source\IGOEnchi.GoTextProtocolLib\obj\Debug\IGOEnchi.GoTextProtocolLib.dll
 C:\data\mgardent\RD\IGOEnchi\source\IGOEnchi.GoTextProtocolLib\obj\Debug\IGOEnchi.GoTextProtocolLib.pdb
+D:\Projets\GIT\igoenchi\Source\IGOEnchi.GoTextProtocolLib\bin\Debug\IGOEnchi.GoTextProtocolLib.dll
+D:\Projets\GIT\igoenchi\Source\IGOEnchi.GoTextProtocolLib\bin\Debug\IGOEnchi.GoTextProtocolLib.pdb
+D:\Projets\GIT\igoenchi\Source\IGOEnchi.GoTextProtocolLib\obj\Debug\IGOEnchi.GoTextProtocolLib.csprojResolveAssemblyReference.cache
+D:\Projets\GIT\igoenchi\Source\IGOEnchi.GoTextProtocolLib\obj\Debug\IGOEnchi.GoTextProtocolLib.csproj.CoreCompileInputs.cache
+D:\Projets\GIT\igoenchi\Source\IGOEnchi.GoTextProtocolLib\obj\Debug\IGOEnchi.GoTextProtocolLib.dll
+D:\Projets\GIT\igoenchi\Source\IGOEnchi.GoTextProtocolLib\obj\Debug\IGOEnchi.GoTextProtocolLib.pdb

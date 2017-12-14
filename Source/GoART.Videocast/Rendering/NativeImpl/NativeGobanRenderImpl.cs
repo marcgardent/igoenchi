@@ -118,5 +118,6 @@ namespace IGOEnchi.Videocast.Rendering.NativeImpl
 
             context.DrawEllipse(focusStroke, rect);
         }
+        
     }
 }

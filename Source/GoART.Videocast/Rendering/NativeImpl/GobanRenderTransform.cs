@@ -31,9 +31,9 @@ namespace IGOEnchi.Videocast.Rendering.NativeImpl
         public void SetBlack() => goban.SetBlack();
 
         public void SetWhite() => goban.SetWhite();
+
         public void Hatch(int x, int y, Color color) => Transform(() => goban.Hatch(x, y, color));
         
-
         public void Outline(int x, int y,Color color) => Transform(() => goban.Outline(x, y, color));
 
         public void Stone(int x, int y) => Transform(() => goban.Stone(x, y));
@@ -47,6 +47,7 @@ namespace IGOEnchi.Videocast.Rendering.NativeImpl
         public void BorderBottom(int x, int y, Color color) => Transform(() => goban.BorderBottom(x, y, color));
 
         public void BorderRight(int x, int y, Color color) => Transform(() => goban.BorderRight(x, y, color));
+
 
     }
 }

@@ -37,5 +37,7 @@ namespace IGOPhoenix.GoGameAnalytic.Test
                 Trace.WriteLine($"|{i}");
             }
         }
+
+        
     }
 }

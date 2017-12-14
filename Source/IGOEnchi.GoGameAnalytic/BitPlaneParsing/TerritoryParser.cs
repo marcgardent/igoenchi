@@ -1,8 +1,59 @@
 using System.Collections.Generic;
+using System.Linq;
 using IGOEnchi.GoGameLogic;
+using IGOPhoenix.GoGameAnalytic.Maps;
 
 namespace IGOPhoenix.GoGameAnalytic.BitPlaneParsing
 {
+    public class LocalInfluence
+    {
+        public readonly Map localInfluence;
+
+        public readonly BitPlane White;
+        public readonly BitPlane Black;
+
+        public LocalInfluence(Board board)
+        {
+             this.localInfluence = new Map(board.Size, board.Size);
+            White = new BitPlane(board.Size);
+            Black= new BitPlane(board.Size);
+
+            foreach (var allCoord in board.AllCoords)
+            {
+                if (board.White[allCoord])
+                {
+                    White[allCoord] = true;
+                }
+                else if (board.Black[allCoord])
+                {
+                    Black[allCoord] = true;
+                }
+                else { 
+
+                    foreach (var rank in AnalyticHelper.OilStainWalker(board.White, allCoord))
+                    {
+                        var whites = rank.Count(x => board.White[x]);
+                        var blacks = rank.Count(x => board.Black[x]);
+
+                        if (whites > 0 || blacks > 0)
+                        {
+                            if (whites>blacks)
+                            {
+                                this.White[allCoord] = true;
+                            }
+                            else if (whites < blacks)
+                            {
+                                this.Black[allCoord] = true;
+                            }
+
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     public class TerritoryParser
     {
         public enum BorderState

@@ -107,15 +107,22 @@ namespace IGOEnchi.Videocast.Rendering.NativeImpl
 
         public void Influence(InfluenceAnalyser influences)
         {
-            foreach (var coord in influences.whiteInfluence.AllCoords)
+            foreach (var coord in influences.WhiteSupport.AllCoords)
             {
-                var white = influenceScale.Map(influences.whiteInfluence[coord]);
-                var black = influenceScale.Map(influences.blackInfluence[coord]);
+                var white = influenceScale.Map(influences.WhiteSupport[coord]);
+                var black = influenceScale.Map(influences.BlackSupport[coord]);
                 var impact = influenceScale.Map(influences.MoveInfluence[coord]);
+
                 tierce.Outline(coord.X, coord.Y, Color.FromArgb(black, 0, 0));
-                quarte.Outline(coord.X, coord.Y, Color.FromArgb(black, 0, white));
                 quinte.Outline(coord.X, coord.Y, Color.FromArgb(0, 0, white));
-                seconde.Outline(coord.X, coord.Y, Color.FromArgb(impact, impact, impact));
+
+                
+                quarte.Outline(coord.X, coord.Y, Color.FromArgb(white, 0, black));
+
+                if (influences.LocalInfluence.Black[coord]) seconde.Outline(coord.X, coord.Y, Color.FromArgb(0, 0, 255));
+                if (influences.LocalInfluence.White[coord]) seconde.Outline(coord.X, coord.Y, Color.FromArgb(255, 0, 0));
+
+                seconde.Outline(coord.X, coord.Y, Color.FromArgb(128,impact, impact, impact));
                 
             }
 

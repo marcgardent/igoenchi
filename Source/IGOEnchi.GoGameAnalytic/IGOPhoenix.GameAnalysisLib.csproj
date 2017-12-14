@@ -49,7 +49,7 @@
     <Compile Include="Maps\Influence\RayTracing\RayTracer.cs" />
     <Compile Include="Maps\LayersMap.cs" />
     <Compile Include="Maps\Map.cs" />
-    <Compile Include="BitPlaneParsing\Territory.cs" />
+    <Compile Include="BitPlaneParsing\TerritoryParser.cs" />
     <Compile Include="Maps\ThresholdMapper.cs" />
     <Compile Include="Models\ChainStat.cs" />
     <Compile Include="Models\GoDynamic.cs" />

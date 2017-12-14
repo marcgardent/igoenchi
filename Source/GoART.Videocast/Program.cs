@@ -92,6 +92,7 @@ namespace IGOEnchi.Videocast
                         goban.Influence(influences);
 
                         goban.SetBlack();
+
                         foreach (var coord in game.board.Black.Unabled)
                         {
                             goban.Stone(coord.X, coord.Y);

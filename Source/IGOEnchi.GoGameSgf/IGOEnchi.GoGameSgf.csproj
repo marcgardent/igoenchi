@@ -10,7 +10,6 @@
     <PackageReleaseNotes>First release</PackageReleaseNotes>
     <PackageLicenseUrl>https://raw.githubusercontent.com/MarketGarden/igoenchi/master/license.txt</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/MarketGarden/igoenchi</PackageProjectUrl>
-    
     <Copyright>Copyright (C) 2006-2010 Valentin Kraevskiy</Copyright>
     <PackageTags>SGF</PackageTags>
   </PropertyGroup>

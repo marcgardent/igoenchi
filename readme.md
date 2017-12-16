@@ -1,6 +1,5 @@
-# IGoEnchi
 
-## About
+# About
 
 The project is fork of IGoEnchi 
 
@@ -8,20 +7,56 @@ The project is fork of IGoEnchi
 > for Windows Mobile. For more information please visit IGoEnchi 
 > homepage at  http://sourceforge.net/projects/igoenchi/
 
-## purpose of fork
+## Purpose of fork
 
 * Migrate to github
 * Compile under Visual Studio with last DotNet Framework
 * Separate of concern and make reusable lib and publish NuGet package.
-** IGOEnchi.SmartGameLib
-** IGOEnchi.GoGameLogic
-** IGOEnchi.GoGameSgf
+  * IGOEnchi.GoGameSgf
+    * IGOEnchi.SmartGameLib
+    * IGOEnchi.GoGameLogic
+  
 
-## IGOEnchi.SmartGameLib Library
+# IGOEnchi.GoGameSgf Library
 
-Library to read/write Sgf-files https://en.wikipedia.org/wiki/Smart_Game_Format
+Library to read/write gogames with Sgf-files. It's use IGOEnchi.SmartGameLib, IGOEnchi.GoGameLogic.
 
-### Usage
+## Usage
+
+### Open gogame from SGF
+
+```
+    private static GoGame OpenFile(string path)
+    {
+        using (var stream = File.OpenRead(path))
+        {
+            var excepted = SgfReader.LoadFromStream(stream);
+            return SgfCompiler.Compile(excepted);
+        }
+    }
+```
+
+### Save gogame to SGF
+
+```
+	private static void SaveAsSgf(GoGame gogame, string path)
+    {
+        var builder = new GoSgfBuilder(gogame);
+        var sgf = builder.ToSGFTree();
+
+        using (var file = File.CreateText(path))
+        {
+            var writer = new SgfWriter(file, true);
+            writer.WriteSgfTree(sgf);
+        }
+    }
+```
+
+# IGOEnchi.SmartGameLib Library
+
+Independant library to read/write Sgf-files https://en.wikipedia.org/wiki/Smart_Game_Format
+
+## Usage
 
 ### Read SGF
 
@@ -30,6 +65,7 @@ SGFTree excepted = SgfReader.LoadFromStream(stream);
 ```
 
 See also
+
 * For Advanded usage to consume SGFTree see ```IGOEnchi.GoGameSgf.SgfCompiler``` Class
 
 ### Create and Write SGF with SgfBuilder
@@ -54,41 +90,9 @@ See also
 * SGF Documentation http://www.red-bean.com/sgf/sgf4.html
 
 
-## IGOEnchi.GoGameSgf Library
-
-Library to read/write gogames with Sgf-files.
-
-### Usage
-
-```
-    private static GoGame OpenFile(string path)
-    {
-        using (var stream = File.OpenRead(path))
-        {
-            var excepted = SgfReader.LoadFromStream(stream);
-            return SgfCompiler.Compile(excepted);
-        }
-    }
-
-	private static void SaveAsSgf(GoGame gogame, string path)
-    {
-        var builder = new GoSgfBuilder(gogame);
-        var sgf = builder.ToSGFTree();
-
-        using (var file = File.CreateText(path))
-        {
-            var writer = new SgfWriter(file, true);
-            writer.WriteSgfTree(sgf);
-        }
-    }
-```
-
 ## IGOEnchi.GoGameLogic Library
 
 Independant library to manipulate gogame.
-
-'''
-To consume see 
 
 ```
     private static void throughGogameSample(GoGame game)

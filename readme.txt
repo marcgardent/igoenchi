@@ -1,43 +1,112 @@
-=== IGoEnchi Readme File ===
+# IGoEnchi
 
-About
+## About
 
-  IGoEnchi is an Internet Go Server (IGS) client and SGF editor 
-  for Windows Mobile. For more information please visit IGoEnchi 
-  homepage at
+The project is fork of IGoEnchi 
 
-  http://sourceforge.net/projects/igoenchi/
+> IGoEnchi is an Internet Go Server (IGS) client and SGF editor 
+> for Windows Mobile. For more information please visit IGoEnchi 
+> homepage at  http://sourceforge.net/projects/igoenchi/
 
-How To Build
+## purpose of fork
 
-  1. Download and install SharpDevelop 3.1, .NET 2.0 SDK,
-  	 PowerToys for .NET CompactFramework 3.5 and 
-  	 .NET CompactFramework 2.0 SP2.
-  2. Start a new C#->Compact Framework->Windows Application project.
-  3. Change target runtime to .NET CF 2.0 at 
-	 Project->Project Options->Compiling->Target Framework
-  4. Remove all the references, then inlude references to  
-		System.dll
-		System.Data.dll
-		System.Drawing.dll
-		System.Xml.dll
-		System.Windows.Forms.dll
-		System.Windows.Forms.DataGrid.dll
-		Microsoft.WindowsCE.Forms.dll
-		Microsoft.WindowsMobile.DirectX.dll
-	 from .NET CF 2.0 install directory. By default it is 
-	 C:\Program Files\Microsoft.NET\SDK\CompactFramework\v2.0\WindowsCE\
-  5. Add source files to the project.
-  6. Add resources from \data\resources to the project.
+* Migrate to github
+* Compile under Visual Studio with last DotNet Framework
+* Separate of concern and make reusable lib and publish NuGet package.
+** IGOEnchi.SmartGameLib
+** IGOEnchi.GoGameLogic
+** IGOEnchi.GoGameSgf
 
-Things to remember
+## IGOEnchi.SmartGameLib Library
 
-  If you're making changes to source code or data please note the following:
+Library to read/write Sgf-files https://en.wikipedia.org/wiki/Smart_Game_Format
 
-  1. IGS parser is running in separate thread, so form's controls need to be 
-     accessed via Invoke().
-  2. IGS message handlers should not alter the message because it is shared 
-     between all registered objects.
-  3. Graphical objects like Bitmaps, Graphics, Pens, Brushes, etc. use 
-     unmanaged memory which should be freed using Dispose(). 
-  4. Toolbar icons need to be saved with 256 colors for transparency to work.
+### Usage
+
+### Read SGF
+
+```
+SGFTree excepted = SgfReader.LoadFromStream(stream);
+```
+
+See also
+* For Advanded usage to consume SGFTree see ```IGOEnchi.GoGameSgf.SgfCompiler``` Class
+
+### Create and Write SGF with SgfBuilder
+```
+	//Build
+    var b = new SgfBuilder();
+    b.p("b", "M1")
+        .Fork(x => x.p("b", "M2").Next().p("b", "M3"))
+        .Fork(x => x.p("c", "M2").Next().p("c", "M3"));
+
+	var sgf = b.ToSGFTree();
+
+	//Save
+    using (var file = File.CreateText(path))
+    {
+		var writer = new SgfWriter(file, true);
+        writer.WriteSgfTree(sgf);
+	}
+```
+
+See also
+* SGF Documentation http://www.red-bean.com/sgf/sgf4.html
+
+
+## IGOEnchi.GoGameSgf Library
+
+Library to read/write gogames with Sgf-files.
+
+### Usage
+
+```
+    private static GoGame OpenFile(string path)
+    {
+        using (var stream = File.OpenRead(path))
+        {
+            var excepted = SgfReader.LoadFromStream(stream);
+            return SgfCompiler.Compile(excepted);
+        }
+    }
+
+	private static void SaveAsSgf(GoGame gogame, string path)
+    {
+        var builder = new GoSgfBuilder(gogame);
+        var sgf = builder.ToSGFTree();
+
+        using (var file = File.CreateText(path))
+        {
+            var writer = new SgfWriter(file, true);
+            writer.WriteSgfTree(sgf);
+        }
+    }
+```
+
+## IGOEnchi.GoGameLogic Library
+
+Independant library to manipulate gogame.
+
+'''
+To consume see 
+
+```
+    private static void throughGogameSample(GoGame game)
+    {
+        game.ToStart();
+
+        do
+        {
+            var move =game.CurrentNode as GoMoveNode;
+                
+            if (move!=null)
+            {
+                //your code
+            }
+        }
+	while ( game.ToNextMove());
+
+	}
+```
+
+To construct gogame see   ```IGOEnchi.GoGameSgf.SgfCompiler``` Class

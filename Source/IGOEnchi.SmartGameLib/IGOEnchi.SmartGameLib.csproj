@@ -1,8 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>IGOEnchi.SmartGameLib</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
+    <PackageVersion>1.0.1</PackageVersion>
     <Authors>Valentin Kraevskiy, MarketGarden</Authors>
     <Description>Reusable lib to read and write "Smart Game Format" File.</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>

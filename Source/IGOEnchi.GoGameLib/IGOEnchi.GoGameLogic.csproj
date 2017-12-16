@@ -1,9 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>IGOEnchi.GoGameLogic</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
+    <PackageVersion>1.0.1</PackageVersion>
     <Authors>Valentin Kraevskiy, MarketGarden</Authors>
     <Description>Classes to manipulate Go Game.</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -13,5 +12,4 @@
     <Copyright>Copyright (C) 2006-2010 Valentin Kraevskiy</Copyright>
     <PackageTags>SGF</PackageTags>
   </PropertyGroup>
-
 </Project>

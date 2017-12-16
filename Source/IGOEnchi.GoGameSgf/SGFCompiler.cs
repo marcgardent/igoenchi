@@ -71,6 +71,34 @@ namespace IGOEnchi.GoGameSgf
             var game = new GoGame(size);
             foreach (var property in rootNode.Properties)
             {
+                if (property.Name == "BR")
+                {
+                    game.Info.BlackRank = property.Value;
+                }
+                if (property.Name == "WR")
+                {
+                    game.Info.WhiteRank = property.Value;
+                }
+                if (property.Name == "DT")
+                {
+                    game.Info.DateOfGame = property.Value;
+                }
+                if (property.Name == "GC")
+                {
+                    game.Info.Summarize = property.Value;
+                }
+                if (property.Name == "RU")
+                {
+                    game.Info.Rules  = property.Value;
+                }
+                if (property.Name == "AP")
+                {
+                    game.Info.ProgramName = property.Value;
+                }
+                if (property.Name == "GN")
+                {
+                    game.Info.Name = property.Value;
+                }
                 if (property.Name == "PW")
                 {
                     game.Info.WhitePlayer = property.Value;

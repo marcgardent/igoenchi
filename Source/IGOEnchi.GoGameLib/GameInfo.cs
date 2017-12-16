@@ -18,6 +18,7 @@ namespace IGOEnchi.GoGameLogic
             Komi = komiFloat;
         }
 
+        
 
         public string BlackPlayer { get; set; }
 
@@ -26,6 +27,18 @@ namespace IGOEnchi.GoGameLogic
         public int Handicap { get; set; }
 
         public float Komi { get; set; }
+
+        /// <summary>
+        /// Rank White Player
+        /// map to BR
+        /// </summary>
+        public string WhiteRank { get; set; }
+
+        /// <summary>
+        /// Rank Black Player
+        /// map to WR
+        /// </summary>
+        public string BlackRank { get; set; }
 
         /// <summary>
         /// Name of game
